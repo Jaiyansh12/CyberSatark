@@ -732,7 +732,7 @@ export default function PasswordAnalyzerPage() {
                           ) : (
                             <div className="p-6 text-center bg-black/20 border border-white/5 rounded-xl font-mono text-xs text-green-400 flex flex-col items-center justify-center gap-1.5">
                               <CheckCircle2 size={20} />
-                              <span>✓ Complexity Telemetry: Zero credential vulnerability signatures flagged.</span>
+                              <span>✓ Scan complete: No security vulnerabilities flagged.</span>
                             </div>
                           )}
                         </div>
@@ -808,7 +808,7 @@ export default function PasswordAnalyzerPage() {
                       {activeTab === "hashes" && (
                         <div className="bg-black/45 border border-white/5 rounded-xl p-4 font-mono text-xs text-green-300 leading-relaxed shadow-inner">
                           <div className="flex items-center justify-between border-b border-white/5 pb-2 mb-3 text-gray-500 font-bold">
-                            <span>CRYPTO_HASH_DECK_SIMULATOR</span>
+                            <span>Hash Digest Simulator</span>
                             <span>Secure client digests</span>
                           </div>
                           
@@ -882,9 +882,9 @@ export default function PasswordAnalyzerPage() {
                 >
                   <Activity size={32} className="opacity-25 animate-pulse" />
                   <div className="space-y-1.5">
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// MODULE_IDLE</p>
+                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// Standby</p>
                     <p className="text-xs max-w-sm leading-relaxed">
-                      Awaiting suspected credential payload input in the control console to execute cryptographic complexity scan.
+                      Awaiting password input to execute complexity and strength scans.
                     </p>
                   </div>
                 </motion.div>

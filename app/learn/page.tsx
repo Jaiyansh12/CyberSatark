@@ -20,7 +20,12 @@ import {
   Shield,
   Loader2,
   AlertCircle,
-  CheckCircle2
+  CheckCircle2,
+  Search,
+  Laptop,
+  Send,
+  UserMinus,
+  ShieldCheck
 } from "lucide-react";
 import { ProgressBar } from "@heroui/react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -109,8 +114,8 @@ export default function LearnPage() {
         <div className="min-h-screen flex items-center justify-center bg-black/50 relative z-10">
           <div className="flex flex-col items-center gap-3 font-mono text-sm text-green-400">
             <Loader2 className="animate-spin text-green-500" size={32} />
-            <span className="tracking-widest uppercase">Establishing secure cloud connection...</span>
-            <span className="text-[10px] text-gray-500 animate-pulse">// FETCHING_LEARN_TELEMETRY</span>
+            <span className="tracking-widest uppercase">Loading learning content...</span>
+            <span className="text-[10px] text-gray-500 animate-pulse">// Loading course data</span>
           </div>
         </div>
       </>
@@ -161,11 +166,11 @@ export default function LearnPage() {
       <motion.div 
         animate={{ height: navbarVisible ? "calc(100vh - 112px)" : "100vh" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="flex overflow-hidden text-gray-300 relative z-10 max-w-7xl mx-auto w-full px-4 md:px-0"
+        className="flex overflow-hidden text-gray-300 relative z-10 max-w-7xl mx-auto w-full px-4 md:px-6 gap-6"
       >
         
         {/* SIDEBAR PANEL */}
-        <aside className="cyber-scroll h-full w-80 border-r border-white/10 px-6 py-6 overflow-y-auto bg-white/[0.015] backdrop-blur-[35px] saturate-[1.6] shadow-[0_20px_50px_rgba(0,0,0,0.55)] flex flex-col justify-between select-none relative hidden md:flex overflow-hidden group/aside">
+        <aside className="cyber-scroll h-[calc(100%-48px)] my-6 w-80 rounded-3xl border border-white/10 px-6 py-6 overflow-y-auto bg-white/[0.015] backdrop-blur-[35px] saturate-[1.6] shadow-[0_20px_50px_rgba(0,0,0,0.55)] flex flex-col justify-between select-none relative hidden md:flex overflow-hidden group/aside">
           {/* Liquid Sheen Highlight */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] via-transparent to-transparent opacity-100 transition-opacity duration-500 pointer-events-none" />
           <div className="absolute -inset-y-12 -inset-x-0 w-[50%] bg-gradient-to-r from-transparent via-white/[0.015] to-transparent skew-x-12 translate-x-[-150%] group-hover/aside:translate-x-[250%] transition-transform duration-[1500ms] ease-out pointer-events-none" />
@@ -175,7 +180,7 @@ export default function LearnPage() {
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <Shield className="text-green-400 h-5 w-5" />
               <h2 className="text-sm font-black text-white font-mono tracking-wider uppercase">
-                TRAINING_CORE
+                Training Core
               </h2>
             </div>
 
@@ -185,18 +190,18 @@ export default function LearnPage() {
                 const isActive = active === i;
                 const isCompleted = active > i;
                 
-                let stateLabel = "[PENDING]";
-                if (isActive) stateLabel = "[ACTIVE]";
-                else if (isCompleted) stateLabel = "[VERIFIED]";
+                let stateLabel = "Pending";
+                if (isActive) stateLabel = "Active";
+                else if (isCompleted) stateLabel = "Completed";
 
                 return (
                   <button
                     key={i}
                     onClick={() => changeActiveChapter(i)}
-                    className={`w-full text-left px-4 py-3 rounded-xl border transition-all duration-300 font-mono text-sm relative overflow-hidden flex items-center gap-3 group cursor-pointer
+                    className={`w-full text-left px-4 py-3 rounded-xl border transition-all duration-300 font-mono text-sm relative overflow-hidden flex items-center gap-3.5 group cursor-pointer
                     ${
                       isActive
-                        ? "bg-green-500/10 border-green-500/40 text-green-300 font-bold shadow-[0_0_15px_rgba(34,197,94,0.05)]"
+                        ? "bg-gradient-to-r from-green-500/10 to-transparent border-green-500/30 text-green-300 font-bold shadow-[0_4px_20px_rgba(34,197,94,0.05)]"
                         : isCompleted
                         ? "border-green-500/10 hover:border-green-500/25 hover:bg-green-500/[0.02] text-gray-400"
                         : "border-white/5 hover:bg-white/[0.02] hover:border-white/10 hover:text-white text-gray-500"
@@ -209,15 +214,22 @@ export default function LearnPage() {
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}
-                    <Icon size={16} className={`shrink-0 ${isActive ? "text-green-400" : isCompleted ? "text-green-500/50" : "text-gray-600"}`} />
-                    <div className="flex-1 min-w-0">
-                      <span className="truncate block text-xs">{ch.title}</span>
-                      <span className={`text-[9px] font-mono block mt-0.5 ${isActive ? "text-green-400 animate-pulse font-bold" : isCompleted ? "text-green-600" : "text-gray-600"}`}>
+
+                    {/* Chapter Number Badge */}
+                    <span className={`text-[10px] font-mono shrink-0 ${isActive ? "text-green-400" : "text-gray-600"}`}>
+                      0{i + 1}
+                    </span>
+
+                    <Icon size={15} className={`shrink-0 ${isActive ? "text-green-400" : isCompleted ? "text-green-500/50" : "text-gray-600"}`} />
+                    
+                    <div className="flex-1 min-w-0 font-sans">
+                      <span className="truncate block text-xs tracking-wide">{ch.title}</span>
+                      <span className={`text-[9px] font-mono block mt-0.5 uppercase tracking-wider ${isActive ? "text-green-400 animate-pulse font-bold" : isCompleted ? "text-green-600" : "text-gray-600"}`}>
                         {stateLabel}
                       </span>
                     </div>
                     {isCompleted ? (
-                      <Check size={14} className="text-green-400 shrink-0 bg-green-500/10 p-0.5 rounded-full" />
+                      <Check size={13} className="text-green-400 shrink-0 bg-green-500/10 p-0.5 rounded-full" />
                     ) : (
                       <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400" />
                     )}
@@ -229,8 +241,8 @@ export default function LearnPage() {
 
           <div className="mt-8 border-t border-white/5 pt-4 relative z-10 font-mono">
             <div className="flex justify-between items-center text-[10px] text-gray-500 mb-2">
-              <span>ACADEMY_MODULE_TELEMETRY</span>
-              <span className="text-green-400 font-bold">{Math.round(progress)}% COMPLETE</span>
+              <span>Course Progress</span>
+              <span className="text-green-400 font-bold">{Math.round(progress)}% Complete</span>
             </div>
             <div className="w-full h-1.5 bg-black/45 border border-white/5 rounded-full overflow-hidden p-[1px]">
               <div 
@@ -255,22 +267,38 @@ export default function LearnPage() {
                   <div className="flex items-center gap-2">
                     <span className="inline-flex w-2 h-2 rounded-full bg-green-500 animate-ping" />
                     <span className="text-[10px] text-green-400 font-mono tracking-widest uppercase font-bold">
-                      SECURE_LEARNING_PIPELINE // SEC-LEVEL_1
+                      Interactive Training Guide
                     </span>
                   </div>
                   <h1 className="text-2xl font-black text-white font-mono uppercase tracking-wide mt-1">
-                    Phishing Awareness HUD
+                    Phishing Awareness Course
                   </h1>
+
+                  {/* Mobile Chapter Selector */}
+                  <div className="mt-4 md:hidden relative font-mono text-xs">
+                    <span className="text-[10px] text-gray-500 uppercase block mb-1">Select Chapter</span>
+                    <select
+                      value={active}
+                      onChange={(e) => changeActiveChapter(Number(e.target.value))}
+                      className="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-2.5 text-green-300 focus:outline-none focus:border-green-400/40 transition duration-300"
+                    >
+                      {chapters.map((ch, idx) => (
+                        <option key={idx} value={idx} className="bg-black text-gray-300">
+                          Chapter 0{idx + 1}: {ch.title}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
                 
                 {/* HUD STATUS VALUES */}
                 <div className="grid grid-cols-2 gap-4 text-left md:text-right font-mono text-xs text-gray-400">
                   <div className="border-l md:border-l-0 md:border-r border-white/5 pr-4 pl-4 md:pl-0">
-                    <span className="text-[10px] text-gray-500 uppercase block">ACTIVE_PHASE</span>
+                    <span className="text-[10px] text-gray-500 uppercase block">Current Chapter</span>
                     <span className="text-white font-bold block">0{active + 1} / 0{chapters.length}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-gray-500 uppercase block">NODE_SECTOR</span>
+                    <span className="text-[10px] text-gray-500 uppercase block">Topic</span>
                     <span className="text-green-400 font-bold block truncate max-w-[150px]" title={chapters[active].title}>
                       {chapters[active].title}
                     </span>
@@ -286,7 +314,7 @@ export default function LearnPage() {
               <div className="absolute -inset-y-12 -inset-x-0 w-[50%] bg-gradient-to-r from-transparent via-white/[0.02] to-transparent skew-x-12 translate-x-[-150%] group-hover/card:translate-x-[150%] transition-transform duration-[1500ms] ease-out pointer-events-none" />
 
               <div className="absolute top-2 right-2 font-mono text-[9px] text-gray-600 pointer-events-none select-none">
-                SYS_VER_2.6 // CONSOLE_HUD
+                Security Academy
               </div>
               
               <AnimatePresence mode="wait">
@@ -319,11 +347,11 @@ export default function LearnPage() {
               className="px-5 py-3 rounded-xl border border-white/5 hover:border-green-500/20 hover:bg-green-500/5 text-xs font-bold text-gray-400 hover:text-green-300 disabled:opacity-20 disabled:pointer-events-none transition duration-300 cursor-pointer flex items-center gap-2"
             >
               <span>←</span>
-              <span>PREV_NODE</span>
+              <span>Previous</span>
             </button>
 
             <span className="text-[10px] text-gray-600 hidden md:inline">
-              SYS_METRICS: SCAN_OK // ADAPTIVE_LEARNING_HUD
+              Training Course Status: Online
             </span>
 
             <button
@@ -331,7 +359,7 @@ export default function LearnPage() {
               onClick={() => changeActiveChapter(active + 1)}
               className="px-5 py-3 rounded-xl bg-green-500 hover:bg-green-400 text-black text-xs font-bold disabled:opacity-20 disabled:pointer-events-none transition duration-300 shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] cursor-pointer flex items-center gap-2"
             >
-              <span>NEXT_NODE</span>
+              <span>Next</span>
               <span>→</span>
             </button>
           </div>
@@ -428,7 +456,7 @@ function Quiz({ question, options, answerIndex, explanation }: QuizProps) {
       
       <p className="font-bold text-green-400 mb-2 font-mono text-[9px] uppercase tracking-widest flex items-center gap-1.5 select-none">
         <Shield size={12} className="animate-pulse" />
-        DIAGNOSTIC_VERIFICATION_GATE
+        Chapter Quiz
       </p>
 
       <p className="mb-4 text-sm text-gray-200 leading-relaxed font-sans">{question}</p>
@@ -473,7 +501,7 @@ function Quiz({ question, options, answerIndex, explanation }: QuizProps) {
             className="mt-5 pt-5 border-t border-white/5 overflow-hidden"
           >
             <span className="text-[10px] font-mono font-bold uppercase tracking-wider block mb-1 text-green-400">
-              {selected === answerIndex ? "✓ TELEMETRY MATCH: ACCESS_GRANTED" : "✗ PROFILE DEVIATION: ALERT_LOGGED"}
+              {selected === answerIndex ? "✓ Correct Answer" : "✗ Incorrect Answer"}
             </span>
             <p className="text-xs text-gray-400 leading-relaxed font-sans">
               {explanation}
@@ -511,12 +539,12 @@ function IntroContent() {
         </p>
       </div>
 
-      {/* THREAT TELEMETRY METRIC LABELS */}
+      {/* Threat Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
         {[
-          { label: "DATA_BREACH_SOURCE", val: "91%", desc: "Originates via Phishing", color: "text-red-400", border: "border-red-500/20" },
-          { label: "ATTACK_FREQUENCY", val: "11s", desc: "Worldwide Attack Cycle", color: "text-yellow-400", border: "border-yellow-500/20" },
-          { label: "BUSINESS_IMPACT", val: "$4.9M", desc: "Average Breach Cost", color: "text-blue-400", border: "border-blue-500/20" }
+          { label: "Breaches from Phishing", val: "91%", desc: "Originates via Phishing", color: "text-red-400", border: "border-red-500/20" },
+          { label: "Attack Frequency", val: "11s", desc: "Worldwide Attack Cycle", color: "text-yellow-400", border: "border-yellow-500/20" },
+          { label: "Average Breach Cost", val: "$4.9M", desc: "Average Breach Cost", color: "text-blue-400", border: "border-blue-500/20" }
         ].map((m, idx) => (
           <div key={idx} className={`p-4 bg-black/45 rounded-2xl border ${m.border} relative overflow-hidden group hover:bg-black/60 transition-all duration-300`}>
             <div className="absolute top-0 right-0 w-8 h-8 bg-white/[0.01] border-b border-l border-white/5 rounded-bl-xl pointer-events-none" />
@@ -550,11 +578,11 @@ function IntroContent() {
 /* --- 2. HOW ATTACKS WORK --- */
 function HowWorks() {
   const steps = [
-    { num: "01", label: "RECONNAISSANCE", cmd: "harv_tgt --src=osint", desc: "Attackers harvest target telemetry from public sources (social networks, business directories, data leaks)." },
-    { num: "02", label: "INFRASTRUCTURE", cmd: "clone_site --squat=paypal-verify.net", desc: "Attacker registers typo-squatted domains, designs cloned websites, and acquires email senders." },
-    { num: "03", label: "LURE_DISPATCH", cmd: "send_mail --tpl=billing_alert", desc: "The payload link or file is crafted and sent via SMS, email, or direct messages, mimicking trusted alerts." },
-    { num: "04", label: "COMPROMISE", cmd: "await_input --hook=keystroke_post", desc: "The victim clicks the link, inputs credentials, or downloads attachments under urgent conditions." },
-    { num: "05", label: "EXPLOIT", cmd: "sys_hijack --session=jwt_dump", desc: "Attackers capture data, access cloud endpoints, siphoning financial portals or locking databases." }
+    { num: "01", label: "Reconnaissance", cmd: "OSINT Gathering", icon: Search, desc: "Attackers gather information from public sources, social networks, and data leaks to target specific profiles." },
+    { num: "02", label: "Infrastructure", cmd: "Cloning Login UI", icon: Laptop, desc: "Attackers register domain names mimicking real brands and set up cloned login screens." },
+    { num: "03", label: "Lure Delivery", cmd: "Spoofing Sender", icon: Send, desc: "The phishing payload link or attachment is sent to targets via email, SMS, or other direct channels." },
+    { num: "04", label: "User Compromise", cmd: "Capturing Inputs", icon: UserMinus, desc: "The target is manipulated into clicking the link, logging in, or opening the file under stressful conditions." },
+    { num: "05", label: "System Exploit", cmd: "Exfiltrating Tokens", icon: ShieldCheck, desc: "Attackers hijack active session cookies, download databases, or compromise connected network logs." }
   ];
 
   return (
@@ -568,42 +596,45 @@ function HowWorks() {
       <div className="mt-8 space-y-6 relative">
         <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-green-400 mb-4 flex items-center gap-2">
           <Terminal size={12} className="animate-pulse" />
-          // ATTACK_LIFECYCLE_TIMELINE
+          // Attack Lifecycle Timeline
         </h4>
         
         {/* Connection Line */}
         <div className="absolute left-[20px] top-[40px] bottom-[20px] w-[1px] bg-gradient-to-b from-green-500/20 via-green-500/5 to-transparent pointer-events-none" />
 
-        {steps.map((s, idx) => (
-          <div key={idx} className="flex gap-5 items-start group relative">
-            <div className="flex flex-col items-center relative z-10">
-              <span className="w-10 h-10 rounded-xl border border-green-500/25 flex items-center justify-center font-mono text-xs text-green-400 bg-black group-hover:border-green-500 transition-all duration-300 shadow-[0_0_10px_rgba(34,197,94,0.05)] group-hover:shadow-[0_0_15px_rgba(34,197,94,0.15)]">
-                {s.num}
-              </span>
-            </div>
-            
-            <div className="flex-1 bg-black/40 border border-white/5 p-5 rounded-2xl hover:border-green-500/20 hover:bg-black/60 transition-all duration-300 relative overflow-hidden">
-              <div className="absolute top-0 right-0 font-mono text-[9px] text-green-500/30 px-3 py-1.5 border-l border-b border-white/5 bg-white/[0.01] hidden sm:block">
-                {s.cmd}
+        {steps.map((s, idx) => {
+          const StepIcon = s.icon;
+          return (
+            <div key={idx} className="flex gap-5 items-start group relative">
+              <div className="flex flex-col items-center relative z-10">
+                <span className="w-10 h-10 rounded-xl border border-green-500/25 flex items-center justify-center font-mono text-xs text-green-400 bg-black group-hover:border-green-500 transition-all duration-300 shadow-[0_0_10px_rgba(34,197,94,0.05)] group-hover:shadow-[0_0_15px_rgba(34,197,94,0.15)] shrink-0">
+                  <StepIcon size={16} />
+                </span>
               </div>
-              <span className="text-sm font-mono font-bold text-white uppercase tracking-wider block mb-1">
-                {s.label}
-              </span>
-              <p className="text-xs md:text-sm text-gray-400 font-sans leading-relaxed">
-                {s.desc}
-              </p>
+              
+              <div className="flex-1 bg-black/40 border border-white/5 p-5 rounded-2xl hover:border-green-500/20 hover:bg-black/60 transition-all duration-300 relative overflow-hidden">
+                <div className="absolute top-0 right-0 font-mono text-[9px] text-green-500/30 px-3 py-1.5 border-l border-b border-white/5 bg-white/[0.01] hidden sm:block">
+                  {s.cmd}
+                </div>
+                <span className="text-sm font-mono font-bold text-white uppercase tracking-wider block mb-1">
+                  {s.num}. {s.label}
+                </span>
+                <p className="text-xs md:text-sm text-gray-400 font-sans leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <Quiz
         question="Which phase of the lifecycle focuses on gathering targets' personal detail profiles?"
         options={[
           "Eradication and monitoring",
-          "Reconnaissance and telemetry collection",
+          "Reconnaissance and information gathering",
           "Lure dispatch execution",
-          "Operator input intercept"
+          "Credential harvesting"
         ]}
         answerIndex={1}
         explanation="Reconnaissance is the initial phase where attackers research targets to personalize lures for spear-phishing."
@@ -619,86 +650,86 @@ function Types() {
   const typesList = [
     {
       name: "Spear Phishing",
-      vector: "EMAIL",
+      vector: "Email",
       threat: "HIGH",
       color: "text-red-400",
       complexity: "85%",
       successRate: "76%",
       desc: "Unlike mass phishing, spear phishing is personalized. Attackers research targets in advance, utilizing specific details (e.g., job titles, project names, or colleague names) to build trust.",
-      example: `FROM: IT-Security <sec-compliance@corporate-update-service.net>
-TO: John Doe <john.doe@enterprise-node.com>
-SUBJECT: CRITICAL: Enforce Node Security Verification Challenge
+      example: `FROM: Corporate IT Security <security-update@company-portal.com>
+TO: John Doe <john.doe@company.com>
+SUBJECT: CRITICAL: Verify Your Corporate Password
 
 Dear John,
 
-We noticed your laptop node #9420 has not updated its corporate credential handshake.
-Please run the compliance agent link before your active profile locks in 12 hours:
+Our systems indicate that your work computer has not updated its security certificate.
+Please verify your credentials using the compliance link below within the next 12 hours to avoid account suspension:
 
-URL: https://enterprise-node.com.verify-login-portal.net/auth/challenge`
+URL: https://company-portal.verify-security-login.net/auth`
     },
     {
       name: "Whaling",
-      vector: "EXEC_CHANNELS",
+      vector: "Executive Channels",
       threat: "CRITICAL",
       color: "text-red-500",
       complexity: "95%",
       successRate: "62%",
       desc: "A sub-type of spear phishing specifically targeting high-profile targets such as CEOs, CFOs, or government officials to authorize wire transfers or access databases.",
-      example: `FROM: Board Director <director.richard@investment-board.org>
-TO: CFO <cfo.alex@enterprise-node.com>
-SUBJECT: CONFIDENTIAL: Settlement authorization for Project Ares
+      example: `FROM: Richard Miller <richard.miller@acquisition-group.org>
+TO: CFO <alex.cfo@company.com>
+SUBJECT: CONFIDENTIAL: Wire transfer authorization for acquisition
 
 Alex,
 
-I need you to authorize the initial escrow deposit of $1,420,000 for Project Ares immediately.
+I need you to authorize the initial escrow deposit of $1,420,000 for the acquisition project immediately.
 We are locking the asset transfer window within the hour. Use these escrow details:
 
-IBAN: US82 3400 1200 4509 11 // Bank of East Asia`
+IBAN: US82 3400 1200 4509 11 (Escrow Account)`
     },
     {
       name: "Smishing",
-      vector: "SMS_TEXT",
+      vector: "SMS Text Message",
       threat: "MEDIUM",
       color: "text-yellow-400",
       complexity: "40%",
       successRate: "48%",
       desc: "Phishing conducted through SMS text messages. These often masquerade as delivery notifications, bank alerts, or government warnings containing urgent action links.",
-      example: `ALERT: FedEx package ID #481-942 has been placed on hold due to incorrect zip code delivery index.
-Verify address coordinates within 24h to avoid item return:
+      example: `FedEx ALERT: Your package #481-942 is on hold due to an incomplete delivery address.
+Update your delivery address within 24 hours to avoid package return:
 
 LINK: https://fedex-redirection-hub.org/shipping/update`
     },
     {
       name: "Vishing",
-      vector: "VOICE_CALLS",
+      vector: "Voice Call",
       threat: "MEDIUM",
       color: "text-yellow-400",
       complexity: "60%",
       successRate: "35%",
       desc: "Voice phishing where attackers call victims directly, using spoofed numbers and social engineering tactics to extract critical verification elements or bank pins.",
-      example: `CALLER_ID: spoofed to mimic [Internal Revenue Service - 1-800-829-1040]
-VOICE_SYNTH: "This is automated warning notification from treasury services.
-An outstanding deficit of $4,850 has been registered under your tax ledger.
-Press 1 to connect with an legal officer to complete payment authorization now."`
+      example: `CALLER_ID: Mimicking [Internal Revenue Service - 1-800-829-1040]
+Voice Prompt: "This is an automated notification from the Internal Revenue Service.
+An outstanding tax balance of $4,850 has been detected on your account.
+Press 1 to speak with an agent and resolve your payment now."`
     },
     {
       name: "Clone Phishing",
-      vector: "EMAIL_REPLICA",
+      vector: "Email Clone",
       threat: "HIGH",
       color: "text-red-400",
       complexity: "75%",
       successRate: "68%",
       desc: "Attackers take a legitimate email containing attachments or links that the victim has previously received, copy it, swap links with malware, and send a cloned email.",
-      example: `FROM: Adobe Sign Alerts <sign-notification@adobe-contracts.com> (Spoofed to signature@adobe-contracts-portal.org)
-TO: John Doe <john.doe@enterprise-node.com>
-SUBJECT: Re: Finalized Lease Contract Agreement 2026 // Update
+      example: `FROM: Document Signing Notification <contracts@company-portal.org>
+TO: John Doe <john.doe@company.com>
+SUBJECT: Re: Signed Lease Agreement
 
 John,
 
 We had to adjust line 14 of the contract attachment.
 Please sign the updated version by clicking the portal access code below:
 
-LINK: http://adobe-contracts-portal.org/secure/sign/invoice`
+LINK: http://contracts-portal-signature.org/secure/sign`
     }
   ];
 
@@ -711,36 +742,42 @@ LINK: http://adobe-contracts-portal.org/secure/sign/invoice`
 
       {/* INTERACTIVE CONTROLS TABS */}
       <div className="mt-8 border border-white/5 rounded-2xl overflow-hidden bg-black/20 backdrop-blur-xl">
-        <div className="flex overflow-x-auto border-b border-white/5 scrollbar-thin bg-black/40">
-          {typesList.map((t, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveTab(idx)}
-              className={`px-5 py-4 text-xs font-mono font-bold uppercase tracking-wider shrink-0 transition-all duration-300 cursor-pointer
-              ${
-                activeTab === idx
-                  ? "bg-green-500/10 text-green-300 border-b-2 border-green-500 shadow-inner"
-                  : "text-gray-500 hover:text-gray-300 hover:bg-white/[0.01]"
-              }`}
-            >
-              {t.name}
-            </button>
-          ))}
+        <div className="flex overflow-x-auto border-b border-white/5 scrollbar-none bg-black/45 p-1.5 gap-1.5 select-none">
+          {typesList.map((t, idx) => {
+            const isActive = activeTab === idx;
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveTab(idx)}
+                className={`relative px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider shrink-0 transition-colors duration-300 cursor-pointer
+                ${isActive ? "text-green-300 font-bold" : "text-gray-500 hover:text-gray-300"}`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTypesTab"
+                    className="absolute inset-0 bg-green-500/10 border border-green-500/20 rounded-xl animate-pulse"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{t.name}</span>
+              </button>
+            );
+          })}
         </div>
 
         <div className="p-6 space-y-6">
           {/* STATS MATRIX */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-b border-white/5 pb-5">
             <div>
-              <span className="text-[9px] font-mono text-gray-500 block uppercase">ATTACK_VECTOR</span>
+              <span className="text-[9px] font-mono text-gray-500 block uppercase">Attack Vector</span>
               <span className="text-xs md:text-sm font-mono font-bold text-white">{typesList[activeTab].vector}</span>
             </div>
             <div>
-              <span className="text-[9px] font-mono text-gray-500 block uppercase">THREAT_LEVEL</span>
+              <span className="text-[9px] font-mono text-gray-500 block uppercase">Threat Level</span>
               <span className={`text-xs md:text-sm font-mono font-bold ${typesList[activeTab].color}`}>{typesList[activeTab].threat}</span>
             </div>
             <div>
-              <span className="text-[9px] font-mono text-gray-500 block uppercase">COMPLEXITY</span>
+              <span className="text-[9px] font-mono text-gray-500 block uppercase">Complexity</span>
               <div className="flex items-center gap-2 mt-1">
                 <div className="h-1.5 w-16 bg-white/5 rounded-full overflow-hidden">
                   <div className="h-full bg-green-500" style={{ width: typesList[activeTab].complexity }} />
@@ -749,7 +786,7 @@ LINK: http://adobe-contracts-portal.org/secure/sign/invoice`
               </div>
             </div>
             <div>
-              <span className="text-[9px] font-mono text-gray-500 block uppercase">SUCCESS_RATE</span>
+              <span className="text-[9px] font-mono text-gray-500 block uppercase">Success Rate</span>
               <div className="flex items-center gap-2 mt-1">
                 <div className="h-1.5 w-16 bg-white/5 rounded-full overflow-hidden">
                   <div className="h-full bg-red-500" style={{ width: typesList[activeTab].successRate }} />
@@ -771,7 +808,7 @@ LINK: http://adobe-contracts-portal.org/secure/sign/invoice`
           {/* SIMULATED ATTACK CONSOLE */}
           <div className="border border-white/5 bg-black/60 rounded-xl overflow-hidden font-mono text-[11px] md:text-xs shadow-inner">
             <div className="bg-white/5 px-4 py-2 border-b border-white/5 flex items-center justify-between text-gray-400 text-[9px] md:text-[10px]">
-              <span>[SIMULATED_ATTACK_VECTOR_PAYLOAD]</span>
+              <span>[Simulated Attack Payload]</span>
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
             </div>
             <pre className="p-4 overflow-x-auto text-gray-300 leading-relaxed font-mono whitespace-pre select-text">
@@ -785,7 +822,7 @@ LINK: http://adobe-contracts-portal.org/secure/sign/invoice`
         question="Which attack focus impersonates corporate executives to authorize large financial payouts?"
         options={[
           "Generic spam mailing",
-          "Whaling attack vector",
+          "Whaling attack",
           "Local network spoofing",
           "WiFi sniffing hijack"
         ]}
@@ -803,28 +840,28 @@ function Identify() {
 
   const phishAuditNotes: Record<string, { title: string; check: string; result: string; advise: string }> = {
     sender: {
-      title: "Sender Envelope Check",
-      check: "Domain Registry & Mail servers check (SPF / DKIM)",
-      result: "DKIM Signature: MISSING. SPF Route: FAILURE. The sending server IP is not listed in the legitimate Netflix SPF block.",
-      advise: "Never trust a display name ('Netflix'). Always look for SPF/DKIM validation tags in your client header."
+      title: "Sender Validation",
+      check: "Domain & Email Authenticity Check (SPF / DKIM)",
+      result: "DKIM Signature: MISSING. SPF Record: Fail. The sending server IP is not listed in the legitimate Netflix mail servers list.",
+      advise: "Never trust a display name ('Netflix'). Always look for SPF/DKIM verification details in the email client header."
     },
     urgency: {
-      title: "Psychological Trigger Check",
-      check: "Tone & Urgency telemetry scan",
-      result: "Flagged: High-severity urgency hook ('IMMEDIATE SUSPENSION' / '24 hours'). Designed to trigger threat fear.",
-      advise: "Legitimate businesses will warn about billing issues but rarely terminate infrastructure paths without graceful retry phases."
+      title: "Tone & Urgency Analysis",
+      check: "Tone & Urgency Assessment",
+      result: "Flagged: High urgency hook ('IMMEDIATE SUSPENSION' / '24 hours'). Designed to induce panic.",
+      advise: "Legitimate businesses will warn about billing issues but rarely suspend your access without warning and multiple emails."
     },
     greeting: {
-      title: "Customer Personalization Index",
-      check: "Target registry database check",
-      result: "Greeting check: Anonymous / General ('Dear Customer'). Reveals mail was dispatched to a scraped list.",
-      advise: "Be extremely cautious with emails from organizations you hold accounts with that don't address you by name."
+      title: "Greeting Personalization",
+      check: "Database Personalization Check",
+      result: "Greeting: Anonymous / Generic ('Dear Customer'). Reveals that the email was dispatched to a generic list.",
+      advise: "Be cautious with emails from organizations you hold accounts with that don't address you by your real name."
     },
     link: {
-      title: "Hyperlink Redirect Parser",
-      check: "Hyperlink target redirection resolve",
+      title: "Destination Link Verification",
+      check: "URL Destination Check",
       result: "Destination: http://secure-netflix-accounts.check-portal.net/auth. This points to check-portal.net, not netflix.com.",
-      advise: "Always hover over button links to inspect destination paths before inputting authentication cookies."
+      advise: "Always hover over buttons or links to inspect the actual destination path before entering your credentials."
     }
   };
 
@@ -840,7 +877,7 @@ function Identify() {
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-green-400 flex items-center gap-2">
             <Terminal size={12} />
-            // EMAIL_HEADER_INTERACTION_PORT
+            // Sample Email Header Analysis
           </span>
           
           <div className="flex bg-black/45 border border-white/5 p-1 rounded-xl self-start sm:self-auto">
@@ -870,7 +907,7 @@ function Identify() {
         {inspectMode === "phish" ? (
           <div className="border border-red-500/25 bg-red-500/[0.01] rounded-2xl p-6 font-mono text-xs md:text-sm space-y-4 relative overflow-hidden shadow-lg shadow-red-950/5">
             <div className="absolute top-0 right-0 bg-red-500/10 text-red-400 px-3 py-1.5 text-[8px] md:text-[9px] tracking-widest font-bold uppercase border-l border-b border-red-500/20 animate-pulse">
-              ANOMALIES_DETECTED
+              Security Analysis
             </div>
             
             <div className="space-y-2 border-b border-white/5 pb-4 pt-2">
@@ -880,19 +917,19 @@ function Identify() {
               >
                 <span className="text-gray-500">From:</span>{" "}
                 <span className="text-red-400 font-bold underline decoration-dotted">Netflix accounts-verify@netflix-update.secure-portal.com</span>
-                <span className="text-[8px] md:text-[9px] text-red-500 font-bold ml-2 font-mono">[AUDIT_POINT]</span>
+                <span className="text-[8px] md:text-[9px] text-red-500 font-bold ml-2 font-mono">[Verify Point]</span>
               </div>
               <div className="p-1.5">
                 <span className="text-gray-500">To:</span>{" "}
-                <span>target-user@corporate-node.org</span>
+                <span>user@company.com</span>
               </div>
               <div 
                 onClick={() => setSelectedAudit("urgency")}
                 className={`p-1.5 rounded-lg border transition-all cursor-pointer ${selectedAudit === "urgency" ? "border-red-500 bg-red-500/10" : "border-transparent hover:border-red-500/20 hover:bg-white/[0.01]"}`}
               >
                 <span className="text-gray-500">Subject:</span>{" "}
-                <span className="text-yellow-400 font-bold underline decoration-dotted">⚠️ IMMEDIATE SUSPENSION: Billing Telemetry Conflict</span>
-                <span className="text-[8px] md:text-[9px] text-yellow-500 font-bold ml-2 font-mono">[AUDIT_POINT]</span>
+                <span className="text-yellow-400 font-bold underline decoration-dotted">⚠️ Billing Issue: Action Required</span>
+                <span className="text-[8px] md:text-[9px] text-yellow-500 font-bold ml-2 font-mono">[Verify Point]</span>
               </div>
             </div>
 
@@ -901,10 +938,10 @@ function Identify() {
                 onClick={() => setSelectedAudit("greeting")}
                 className={`p-1.5 rounded-lg border transition-all cursor-pointer font-mono inline-block ${selectedAudit === "greeting" ? "border-red-500 bg-red-500/10" : "border-transparent hover:border-red-500/20 hover:bg-white/[0.01]"}`}
               >
-                Dear Customer, <span className="text-[8px] md:text-[9px] text-red-500 font-bold ml-2 font-mono">[AUDIT_POINT]</span>
+                Dear Customer, <span className="text-[8px] md:text-[9px] text-red-500 font-bold ml-2 font-mono">[Verify Point]</span>
               </p>
               <p className="px-1.5">
-                We were unable to process your payment index. Access will be revoked in **24 hours** 
+                We were unable to process your billing index. Access will be revoked in **24 hours** 
                 unless billing records are updated.
               </p>
               <div className="pt-2 px-1.5">
@@ -916,7 +953,7 @@ function Identify() {
                   className={`px-4 py-2 border rounded-lg inline-block text-[11px] font-mono tracking-wide cursor-pointer transition-all
                   ${selectedAudit === "link" ? "border-red-500 bg-red-500/20 text-red-300 font-bold" : "border-red-500/20 bg-red-500/5 text-red-400 hover:bg-red-500/10"}`}
                 >
-                  SECURE_VERIFICATION_LINK [AUDIT]
+                  Update Billing Information
                 </span>
               </div>
             </div>
@@ -924,18 +961,18 @@ function Identify() {
         ) : (
           <div className="border border-green-500/25 bg-green-500/[0.01] rounded-2xl p-6 font-mono text-xs md:text-sm space-y-4 relative overflow-hidden shadow-lg shadow-green-950/5">
             <div className="absolute top-0 right-0 bg-green-500/10 text-green-400 px-3 py-1.5 text-[8px] md:text-[9px] tracking-widest font-bold uppercase border-l border-b border-green-500/20">
-              ALIGNMENT_VALIDATED
+              Email Authenticated
             </div>
 
             <div className="space-y-2 border-b border-white/5 pb-4 pt-2">
               <div className="p-1.5">
                 <span className="text-gray-500">From:</span>{" "}
                 <span className="text-green-400 font-bold">Netflix info@netflix.com</span>
-                <span className="text-[8px] md:text-[9px] text-green-500 font-mono ml-2">[DKIM_SPF_PASS]</span>
+                <span className="text-[8px] md:text-[9px] text-green-500 font-mono ml-2">[SPF/DKIM: Pass]</span>
               </div>
               <div className="p-1.5">
                 <span className="text-gray-500">To:</span>{" "}
-                <span>target-user@corporate-node.org</span>
+                <span>user@company.com</span>
               </div>
               <div className="p-1.5">
                 <span className="text-gray-500">Subject:</span>{" "}
@@ -985,7 +1022,7 @@ function Identify() {
                 </div>
               ) : (
                 <div className="text-center text-[11px] md:text-xs text-gray-500 font-mono italic py-2">
-                  Click any highlighted <span className="text-red-400 font-bold">[AUDIT_POINT]</span> in the email body above to run digital forensic headers audit tests.
+                  Click any highlighted <span className="text-red-400 font-bold">[Verify Point]</span> in the email body above to analyze its components.
                 </div>
               )}
             </motion.div>
@@ -1013,12 +1050,12 @@ function URLAnalysis() {
   const [activeSegment, setActiveSegment] = useState<number | null>(null);
 
   const urlSegments = [
-    { part: "https://", desc: "Security Protocol: Encrypts data in transit. Note: Attackers configure valid HTTPS SSL/TLS layers too! A browser lock icon only signals encrypted transport integrity, not verification of host identity.", type: "neutral", record: "SSL_HANDSHAKE: ACTIVE" },
-    { part: "netflix", desc: "Obfuscated Subdomain: Attackers put trusted brand labels here as a prefix to trick eyes that read from left to right, making it seem like the brand's space.", type: "warn", record: "SUBDOMAIN_MISMATCH: DETECTED" },
-    { part: ".billing-check", desc: "Auxiliary Subdomain: Extra descriptive labels configured by the host provider to distract the operator from verifying the root host domain registry.", type: "warn", record: "SUBDOMAIN_TRAFFIC: HEURISTIC_ALERT" },
-    { part: ".secure-login-portal", desc: "Root Domain Owner: This is the actual owner root domain of the host website. Because it resolves to secure-login-portal instead of netflix, it is a phishing gateway!", type: "critical", record: "WHOIS_REGISTRY: SUSPICIOUS_AGE (48H)" },
-    { part: ".com", desc: "Top-Level Domain (TLD): General purpose generic TLD. Anyone can purchase standard domain suffixes under any brand prefix.", type: "neutral", record: "TLD: COMMERCE_STANDARD" },
-    { part: "/update-account", desc: "Directory Path: Server path structure configured by the attacker to copy legitimate Netflix settings sub-navigation structures.", type: "neutral", record: "PATH_RESOLVED: STATIC_HTML" }
+    { part: "https://", desc: "Security Protocol: Encrypts data in transit. Note: Attackers configure valid HTTPS SSL/TLS layers too! A browser lock icon only signals encrypted transport integrity, not verification of host identity.", type: "neutral", record: "SSL Handshake: Secure" },
+    { part: "netflix", desc: "Obfuscated Subdomain: Attackers put trusted brand labels here as a prefix to trick eyes that read from left to right, making it seem like the brand's space.", type: "warn", record: "Subdomain Check: Mismatch Detected" },
+    { part: ".billing-check", desc: "Auxiliary Subdomain: Extra descriptive labels configured by the host provider to distract the operator from verifying the root host domain registry.", type: "warn", record: "Subdomain Alert: Unusual Layout" },
+    { part: ".secure-login-portal", desc: "Root Domain Owner: This is the actual owner root domain of the host website. Because it resolves to secure-login-portal instead of netflix, it is a phishing gateway!", type: "critical", record: "WHOIS Registry: Registered 48 Hours Ago" },
+    { part: ".com", desc: "Top-Level Domain (TLD): General purpose generic TLD. Anyone can purchase standard domain suffixes under any brand prefix.", type: "neutral", record: "TLD Check: Standard TLD" },
+    { part: "/update-account", desc: "Directory Path: Server path structure configured by the attacker to copy legitimate Netflix settings sub-navigation structures.", type: "neutral", record: "Path Check: Valid" }
   ];
 
   return (
@@ -1032,32 +1069,48 @@ function URLAnalysis() {
       <div className="mt-8 space-y-6">
         <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-green-400 flex items-center gap-2">
           <Terminal size={12} />
-          // URL_SEGMENTS_PARSER_ENGINE (Click components to isolate)
+          // URL Segment Parser (Click components to analyze)
         </h4>
         
-        <div className="flex flex-wrap items-center bg-black/45 border border-white/5 p-4 rounded-2xl font-mono text-sm leading-none justify-center gap-1 select-none">
-          {urlSegments.map((s, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveSegment(idx)}
-              className={`px-2 py-3 rounded-lg border transition-all cursor-pointer font-bold font-mono text-xs md:text-sm
-              ${
-                activeSegment === idx
-                  ? s.type === "critical"
-                    ? "bg-red-500/20 border-red-500 text-red-300 shadow-[0_0_12px_rgba(239,68,68,0.25)]"
+        <div className="bg-black/30 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          {/* Browser Window Control Bar */}
+          <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+            <div className="flex gap-1.5 shrink-0">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+            </div>
+            <div className="flex-1 bg-black/40 rounded-xl px-4 py-2 text-xs text-gray-450 flex items-center justify-center gap-1.5 border border-white/5 max-w-lg mx-auto font-mono">
+              <Lock size={12} className="text-green-400 shrink-0" />
+              <span className="truncate text-gray-400">secure-connection // Analysis Target</span>
+            </div>
+          </div>
+          
+          {/* Segment Blocks Grid */}
+          <div className="p-6 bg-black/45 flex flex-wrap items-center justify-center gap-1.5 select-none">
+            {urlSegments.map((s, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveSegment(idx)}
+                className={`px-3 py-2 rounded-lg border transition-all cursor-pointer font-bold font-mono text-xs md:text-sm
+                ${
+                  activeSegment === idx
+                    ? s.type === "critical"
+                      ? "bg-red-500/20 border-red-500 text-red-300 shadow-[0_0_12px_rgba(239,68,68,0.25)]"
+                      : s.type === "warn"
+                      ? "bg-yellow-500/20 border-yellow-500 text-yellow-300 shadow-[0_0_12px_rgba(234,179,8,0.25)]"
+                      : "bg-blue-500/20 border-blue-500 text-blue-300 shadow-[0_0_12px_rgba(59,130,246,0.25)]"
+                    : s.type === "critical"
+                    ? "border-red-500/20 text-red-400 hover:border-red-500/40 hover:bg-red-500/5"
                     : s.type === "warn"
-                    ? "bg-yellow-500/20 border-yellow-500 text-yellow-300 shadow-[0_0_12px_rgba(234,179,8,0.25)]"
-                    : "bg-blue-500/20 border-blue-500 text-blue-300 shadow-[0_0_12px_rgba(59,130,246,0.25)]"
-                  : s.type === "critical"
-                  ? "border-red-500/20 text-red-400 hover:border-red-500/40"
-                  : s.type === "warn"
-                  ? "border-yellow-500/20 text-yellow-400 hover:border-yellow-500/40"
-                  : "border-white/5 text-gray-400 hover:border-white/20"
-              }`}
-            >
-              {s.part}
-            </button>
-          ))}
+                    ? "border-yellow-500/20 text-yellow-400 hover:border-yellow-500/40 hover:bg-yellow-500/5"
+                    : "border-white/5 text-gray-400 hover:border-white/20 hover:bg-white/5"
+                }`}
+              >
+                {s.part}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* ANNOTATION DISPLAY */}
@@ -1071,7 +1124,7 @@ function URLAnalysis() {
               className="p-5 rounded-2xl border border-white/5 bg-black/40 shadow-inner"
             >
               <div className="flex justify-between items-center text-[8px] md:text-[9px] font-mono mb-2">
-                <span className="text-gray-500">INTELLIGENCE_METRIC:</span>
+                <span className="text-gray-500">Classification Type:</span>
                 <span className={`font-bold ${
                   urlSegments[activeSegment].type === "critical"
                     ? "text-red-400"
@@ -1083,19 +1136,19 @@ function URLAnalysis() {
                 </span>
               </div>
               <h5 className="font-mono font-bold text-white text-xs md:text-sm mb-1.5">
-                Segment Target: {urlSegments[activeSegment].part}
+                Segment: {urlSegments[activeSegment].part}
               </h5>
               <p className="text-xs md:text-sm text-gray-300 leading-relaxed font-sans">
                 {urlSegments[activeSegment].desc}
               </p>
               <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[8px] md:text-[9px] font-mono text-gray-500">
-                <span>HEURISTIC_RECORD:</span>
+                <span>Heuristic Record:</span>
                 <span className="text-white font-bold">{urlSegments[activeSegment].record}</span>
               </div>
             </motion.div>
           ) : (
             <div className="p-5 rounded-2xl border border-white/5 bg-black/30 text-center text-xs text-gray-500 font-mono italic">
-              Select any highlighted URL segment to display detailed DNS forensic classification records.
+              Select any URL segment above to see its detailed diagnostic information.
             </div>
           )}
         </AnimatePresence>
@@ -1122,7 +1175,7 @@ function Impact() {
     {
       title: "Credential Harvesting",
       metric: "72% of Data Breaches",
-      severity: "CRITICAL_EXPLOIT",
+      severity: "Critical Threat",
       color: "text-red-400",
       border: "border-red-500/20",
       desc: "Attackers deploy fake Outlook, Gmail, or corporate SSO login portals. Once operators input access keys, they hijack cloud files, email boxes, and network directories."
@@ -1130,7 +1183,7 @@ function Impact() {
     {
       title: "Business Email Compromise (BEC)",
       metric: "Financial Redirect Vector",
-      severity: "HIGH_EXPLOIT",
+      severity: "High Threat",
       color: "text-yellow-400",
       border: "border-yellow-500/20",
       desc: "By spoofing or hijacking executive mailboxes, attackers instruct accounting operators to modify invoice bank destination codes, redirecting corporate payments."
@@ -1138,7 +1191,7 @@ function Impact() {
     {
       title: "Ransomware Infiltration",
       metric: "System Shutdown Payload",
-      severity: "CRITICAL_EXPLOIT",
+      severity: "Critical Threat",
       color: "text-red-500",
       border: "border-red-500/25",
       desc: "Phishing emails carry disguised scripts (macros, fake PDFs). Once opened, they execute local shellcode, encrypting company databases and demanding millions in payout."
@@ -1161,13 +1214,13 @@ function Impact() {
             </div>
             
             <div className="space-y-2">
-              <span className="text-[9px] font-mono text-green-400 font-bold block tracking-widest">// TARGET_SECTOR_0{idx+1}</span>
+              <span className="text-[9px] font-mono text-green-400 font-bold block tracking-widest">// Threat Scenario 0{idx+1}</span>
               <h4 className="text-sm md:text-base font-bold text-white font-mono uppercase tracking-wide">{cs.title}</h4>
               <p className="text-xs md:text-sm text-gray-400 font-sans leading-relaxed">{cs.desc}</p>
             </div>
             
             <div className="pt-2 border-t border-white/5 font-mono text-[9px] text-gray-500 uppercase tracking-wider flex justify-between">
-              <span>IMPACT_RATING:</span>
+              <span>Impact:</span>
               <span className={`${cs.color} font-bold`}>{cs.metric}</span>
             </div>
           </div>
@@ -1220,8 +1273,8 @@ function Prevention() {
       {/* CHECKLIST HUD INTERACTIVE MODULE */}
       <div className="mt-8 space-y-5 bg-black/30 border border-white/5 p-6 rounded-2xl backdrop-blur-xl">
         <div className="flex justify-between items-center text-xs font-mono">
-          <span className="font-bold text-green-400 uppercase tracking-wider">// DEFENSIVE_COMPLIANCE_TALLY</span>
-          <span className="text-gray-400">{currentTally} / {checkedItems.length} COMPLIANT</span>
+          <span className="font-bold text-green-400 uppercase tracking-wider">// Training Checklist Progress</span>
+          <span className="text-gray-400">{currentTally} / {checkedItems.length} Completed</span>
         </div>
         
         <div className="w-full h-1.5 bg-black/45 border border-white/5 rounded-full overflow-hidden p-[1px]">
@@ -1337,69 +1390,69 @@ function PersonalIncidentResponse() {
     {
       title: "Identification",
       content: "You suspect entering credentials on an unverified site, sharing a verification pin, or downloading a suspicious file.",
-      action: "Trigger Operator Risk Flag",
-      cmd: "sys_detect --target=active_operator",
+      action: "Flag Suspicious Activity",
+      cmd: "Scan Account Status",
       consoleCmds: [
-        "sys_detect --target=active_operator",
-        "WARN: Exchanged credentials found on host: verify-netflix-portal.com",
-        "ALERT: Session token hijacked from cookie payload. Host isolation recommended."
+        "Scanning account status...",
+        "Warning: Suspicious credentials used on: verify-netflix-portal.com",
+        "Alert: Potential token hijack detected. Password reset recommended."
       ]
     },
     {
       title: "Containment",
       content: "Restrict access paths to isolate the compromise area.",
-      action: "Revoke Active Sessions & Force Reset",
-      cmd: "sys_contain --action=revoke_oauth_tokens",
+      action: "Revoke User Sessions",
+      cmd: "Revoke Active Sessions",
       consoleCmds: [
-        "sys_contain --action=revoke_oauth_tokens --scope=all",
-        "sys_contain --action=reset_system_credentials --user=current",
-        "Success. Terminated 14 active sessions across corporate endpoints.",
-        "Pushing verification challenge... Enforced MFA status."
+        "Revoking active user sessions...",
+        "Initiating password reset...",
+        "Success. Terminated active user sessions.",
+        "Enforced Multi-Factor Authentication requirement."
       ]
     },
     {
       title: "Eradication",
       content: "Search for and remove any malware or hidden access channels.",
-      action: "Sweep Malicious Scripts & Extensions",
-      cmd: "sys_eradicate --scan=malware --target=host",
+      action: "Scan for Malware",
+      cmd: "Scan and Eradicate Malware",
       consoleCmds: [
-        "sys_eradicate --scan=malware --target=local_host",
-        "Analyzing script extensions and hook injections...",
-        "Flagged element: patch-utility.vbs (Hash: F4E2) ... DELETED",
-        "No further background listener scripts found."
+        "Scanning local directory for malware...",
+        "Analyzing script files...",
+        "Flagged suspicious file: patch-utility.vbs ... DELETED",
+        "No further malicious scripts found."
       ]
     },
     {
       title: "Recovery",
       content: "Safely restore normal accounts and audit the environment.",
-      action: "Synchronize Recovery Verification Addresses",
-      cmd: "sys_recover --action=sync_restore",
+      action: "Update Recovery Info",
+      cmd: "Restore Backup State",
       consoleCmds: [
-        "sys_recover --action=sync_restore --target=database_link",
-        "Enforcing verified secondary recovery addresses... OK",
-        "Rebuilding system state. Verification audit check: passed."
+        "Restoring database state...",
+        "Verified secondary recovery address update: OK",
+        "Profile rebuild complete. Security verification check: Passed."
       ]
     },
     {
       title: "Reporting",
       content: "File formal reports to block transactions and warn authorities.",
-      action: "Export Forensic Telemetry Dossier",
-      cmd: "sys_report --portal=cybercrime.gov.in",
+      action: "Generate Security Report",
+      cmd: "Generate Incident Report",
       consoleCmds: [
-        "sys_report --portal=cybercrime.gov.in --type=dossier_draft",
-        "Exporting forensic telemetry logs... Done.",
-        "Auto-filing dispute notices to bank API endpoints... CONNECTED."
+        "Filing report draft...",
+        "Exporting security logs... Done.",
+        "Notifying bank API endpoints... Connected."
       ]
     },
     {
       title: "Monitoring",
       content: "Watch for delayed attacks or data misuse.",
-      action: "Activate Replay Attack Guard",
-      cmd: "sys_monitor --telemetry=passive_tracking",
+      action: "Enable Active Monitoring",
+      cmd: "Activate Active Monitoring",
       consoleCmds: [
-        "sys_monitor --telemetry=passive_tracking --duration=30days",
-        "Deploying login replay triggers... ENGAGED",
-        "Listening for compromise replays... ACTIVE"
+        "Activating passive tracking...",
+        "Deploying login monitors... Active",
+        "Monitoring for suspicious login attempts... Active"
       ]
     }
   ];
@@ -1421,8 +1474,8 @@ function PersonalIncidentResponse() {
     setStep(0);
     const initialCmds = steps[0].consoleCmds.map(cmd => `[${new Date().toLocaleTimeString()}] ${cmd}`);
     setTerminalLogs([
-      `[${new Date().toLocaleTimeString()}] INTERACTIVE INCIDENT SIMULATOR: ONLINE`,
-      `[${new Date().toLocaleTimeString()}] Enforcing forensic perimeter monitoring...`,
+      `[${new Date().toLocaleTimeString()}] Incident Simulator: Active`,
+      `[${new Date().toLocaleTimeString()}] Monitoring simulator state...`,
       ...initialCmds
     ]);
   };
@@ -1449,9 +1502,9 @@ function PersonalIncidentResponse() {
               <ShieldAlert className="h-6 w-6" />
             </div>
             <div className="space-y-1">
-              <h4 className="text-xs md:text-sm font-mono font-bold text-white uppercase tracking-wider">INCIDENT RESPONSE SIMULATION DECK</h4>
+              <h4 className="text-xs md:text-sm font-mono font-bold text-white uppercase tracking-wider">Incident Response Simulator</h4>
               <p className="text-[10px] md:text-xs text-gray-500 font-sans max-w-sm mx-auto">
-                Test your reaction skills by executing playbooks against active credential spoof compromise vectors.
+                Simulate response steps to isolate compromise vectors and secure accounts.
               </p>
             </div>
             <button
@@ -1459,7 +1512,7 @@ function PersonalIncidentResponse() {
               className="bg-green-500 hover:bg-green-400 text-black font-bold px-6 py-3 rounded-xl transition duration-300 cursor-pointer shadow-[0_0_15px_rgba(34,197,94,0.2)] font-mono text-xs tracking-wider uppercase inline-flex items-center gap-2"
             >
               <Terminal size={14} />
-              🚨 INITIALIZE_RESPONSE_SIMULATOR
+              🚨 Start Simulator
             </button>
           </div>
         ) : (
@@ -1488,12 +1541,12 @@ function PersonalIncidentResponse() {
               {/* CARD DETAILS */}
               <div className="bg-black/45 border border-white/5 rounded-xl p-5 space-y-4 relative overflow-hidden">
                 <div className="absolute top-0 right-0 bg-white/5 px-2.5 py-1 text-[8px] text-gray-500 font-mono tracking-widest uppercase rounded-bl-lg">
-                  STAGE_0{step + 1}
+                  Stage 0{step + 1}
                 </div>
                 
                 <div>
                   <span className="text-[10px] font-mono text-green-400 font-bold tracking-widest block uppercase">
-                    PLAYBOOK_{steps[step].title.toUpperCase()}_PHASE
+                    Playbook: {steps[step].title} Phase
                   </span>
                   <h4 className="text-xs md:text-sm font-bold text-white font-mono mt-1">{steps[step].title} Phase</h4>
                   <p className="text-[11px] md:text-xs text-gray-400 mt-2 font-sans leading-relaxed">{steps[step].content}</p>
@@ -1501,13 +1554,13 @@ function PersonalIncidentResponse() {
 
                 {/* RUN SIMULATED COMMAND ACTION BUTTON */}
                 <div className="p-4 bg-green-500/5 border border-green-500/20 rounded-xl">
-                  <span className="text-[9px] text-green-400 font-bold block mb-1 font-mono">// SECURITY COMMAND TERMINAL INTERFACE</span>
+                  <span className="text-[9px] text-green-400 font-bold block mb-1 font-mono">// Simulator Control</span>
                   <button
                     onClick={handleExecuteCommand}
                     disabled={step === steps.length - 1}
                     className="w-full mt-1 px-4 py-2.5 rounded-lg bg-green-500 hover:bg-green-400 text-black font-mono font-bold text-[10px] md:text-xs uppercase tracking-wider transition disabled:opacity-20 disabled:pointer-events-none flex items-center justify-between cursor-pointer shadow-[0_0_10px_rgba(34,197,94,0.15)]"
                   >
-                    <span>EXECUTE: {steps[step].cmd}</span>
+                    <span>Execute: {steps[step].cmd}</span>
                     <Terminal size={14} />
                   </button>
                 </div>
@@ -1518,14 +1571,14 @@ function PersonalIncidentResponse() {
                     onClick={() => setStep((p) => p - 1)}
                     className="px-3 py-1.5 rounded-lg border border-white/5 hover:border-white/10 text-[9px] font-mono hover:bg-white/[0.01] disabled:opacity-30 transition cursor-pointer text-gray-400"
                   >
-                    PREV_PHASE
+                    Previous
                   </button>
 
                   <button
                     onClick={() => setStarted(false)}
                     className="px-3 py-1.5 rounded-lg border border-red-500/20 hover:border-red-500/40 text-[9px] font-mono hover:bg-red-500/5 transition cursor-pointer text-red-400"
                   >
-                    HALT_SIM
+                    Reset
                   </button>
                 </div>
               </div>
@@ -1539,7 +1592,7 @@ function PersonalIncidentResponse() {
               <div className="absolute top-0 left-0 right-0 bg-white/5 px-3 py-1.5 flex items-center justify-between border-b border-white/5 select-none relative z-10">
                 <span className="text-gray-400 flex items-center gap-1.5 text-[8px]">
                   <Terminal size={10} className="text-green-400" />
-                  SHELL: INCIDENT_LOGGER
+                  Incident Log
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
               </div>

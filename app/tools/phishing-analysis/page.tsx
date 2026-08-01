@@ -696,7 +696,7 @@ export default function PhishingAnalysis() {
                           ) : (
                             <div className="p-6 text-center bg-black/20 border border-white/5 rounded-xl font-mono text-xs text-green-400 flex flex-col items-center justify-center gap-1.5">
                               <CheckCircle2 size={20} />
-                              <span>✓ NLP Telemetry: Zero phishing indicators matched.</span>
+                              <span>✓ Analysis complete: No phishing indicators matched.</span>
                             </div>
                           )}
                         </div>
@@ -709,7 +709,7 @@ export default function PhishingAnalysis() {
                               {analysis.iocs.map((ioc, idx) => (
                                 <div key={idx} className="bg-black/35 rounded-xl p-4 border border-white/5 text-cyan-400 break-all flex flex-col justify-between">
                                   <div>
-                                    <span className="text-gray-500 uppercase tracking-widest text-[9px] block mb-1">EXTRACTED_HYPERLINK</span>
+                                    <span className="text-gray-500 uppercase tracking-widest text-[9px] block mb-1">Extracted Hyperlink</span>
                                     <p className="font-bold text-white select-all">{ioc}</p>
                                   </div>
                                   <div className="mt-3 flex items-center gap-1 text-[9px] text-gray-400 border-t border-white/5 pt-2">
@@ -721,7 +721,7 @@ export default function PhishingAnalysis() {
                             </div>
                           ) : (
                             <div className="p-6 text-center bg-black/20 border border-white/5 rounded-xl font-mono text-xs text-gray-500">
-                              // Zero external links or shortened redirect elements extracted.
+                              // No external links or redirect elements extracted.
                             </div>
                           )}
                         </div>
@@ -731,7 +731,7 @@ export default function PhishingAnalysis() {
                         <div className="space-y-4 text-xs font-mono">
                           <div className="grid sm:grid-cols-2 gap-4">
                             <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">URGENCY KEYWORDS</span>
+                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">Urgency Keywords</span>
                               {semanticKeywords.urgency.length > 0 ? (
                                 <div className="flex flex-wrap gap-1.5">
                                   {semanticKeywords.urgency.map(w => (
@@ -744,7 +744,7 @@ export default function PhishingAnalysis() {
                             </div>
 
                             <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">CREDENTIAL PROMPTS</span>
+                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">Credential Prompts</span>
                               {semanticKeywords.credentials.length > 0 ? (
                                 <div className="flex flex-wrap gap-1.5">
                                   {semanticKeywords.credentials.map(w => (
@@ -757,7 +757,7 @@ export default function PhishingAnalysis() {
                             </div>
 
                             <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">ENTERPRISE BRANDS MATCHED</span>
+                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">Matched Brands</span>
                               {semanticKeywords.brands.length > 0 ? (
                                 <div className="flex flex-wrap gap-1.5">
                                   {semanticKeywords.brands.map(w => (
@@ -770,11 +770,11 @@ export default function PhishingAnalysis() {
                             </div>
 
                             <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">FINANCIAL / SCAM PATTERNS</span>
+                              <span className="text-gray-500 uppercase tracking-wider block mb-1.5">Financial / Scam Patterns</span>
                               {semanticKeywords.scams.length > 0 ? (
                                 <div className="flex flex-wrap gap-1.5">
                                   {semanticKeywords.scams.map(w => (
-                                    <span key={w} className="px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 font-bold">{w}</span>
+                                    <span key={w} className="px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-405 text-purple-400 font-bold">{w}</span>
                                   ))}
                                 </div>
                               ) : (
@@ -788,7 +788,7 @@ export default function PhishingAnalysis() {
                       {activeTab === "payload" && (
                         <div className="bg-black/45 border border-white/5 rounded-xl p-4 font-mono text-xs text-green-300 leading-relaxed shadow-inner">
                           <div className="flex items-center justify-between border-b border-white/5 pb-2 mb-3 text-gray-500">
-                            <span>EXTRACTED_ASCII_STRING_STREAM</span>
+                            <span>Extracted Message Content</span>
                             <span>Length: {text.length} characters</span>
                           </div>
                           <pre className="overflow-x-auto whitespace-pre-wrap py-1.5 leading-relaxed font-mono">
@@ -810,9 +810,9 @@ export default function PhishingAnalysis() {
                 >
                   <Activity size={32} className="opacity-25 animate-pulse" />
                   <div className="space-y-1.5">
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// MODULE_IDLE</p>
+                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// Standby</p>
                     <p className="text-xs max-w-sm leading-relaxed">
-                      Awaiting suspected message payload in the control console to execute NLP heuristic threat scans.
+                      Awaiting message content to execute NLP threat scans.
                     </p>
                   </div>
                 </motion.div>

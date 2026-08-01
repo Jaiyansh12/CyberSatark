@@ -806,7 +806,7 @@ export default function EmailChecker() {
                             className="p-5 rounded-2xl border border-white/5 bg-black/20 font-mono text-xs"
                           >
                             <div className="flex justify-between items-center text-[10px] text-gray-500 mb-2 font-bold">
-                              <span>MTA_LINK_ENCRYPTION:</span>
+                              <span>MTA Connection Security:</span>
                               <span className={`font-bold uppercase ${
                                 analysis.hops[activeHop].security === "secured"
                                   ? "text-green-400"
@@ -913,7 +913,7 @@ export default function EmailChecker() {
                           ) : (
                             <div className="p-6 text-center bg-black/20 border border-white/5 rounded-xl font-mono text-xs text-green-400 flex flex-col items-center justify-center gap-1.5">
                               <CheckCircle2 size={20} />
-                              <span>✓ Telemetry check complete: Zero threats flagged.</span>
+                              <span>✓ Scan complete: No security threats flagged.</span>
                             </div>
                           )}
                         </div>
@@ -1036,9 +1036,9 @@ export default function EmailChecker() {
                 >
                   <Activity size={32} className="opacity-25 animate-pulse" />
                   <div className="space-y-1.5">
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// MODULE_IDLE</p>
+                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// Standby</p>
                     <p className="text-xs max-w-sm leading-relaxed">
-                      Awaiting suspected raw header payload in the control console to execute cryptographic routing audit checks.
+                      Awaiting raw email header input to execute routing audit checks.
                     </p>
                   </div>
                 </motion.div>

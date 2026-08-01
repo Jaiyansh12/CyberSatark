@@ -11,25 +11,25 @@ export default function AboutPage() {
       name: "Abhinav Mishra",
       github: "https://github.com/NotSoAbhinav",
       linkedin: "https://www.linkedin.com/in/notsoabhinav/",
-      comPort: "COM_PORT_01",
+      role: "Systems Integration",
     },
     {
       name: "Jaiyansh Dhaulakhandi",
       github: "https://github.com/Jaiyansh-4n6",
       linkedin: "https://www.linkedin.com/in/jaiyansh-4n6/",
-      comPort: "COM_PORT_02",
+      role: "UI/UX Developer",
     },
     {
       name: "Ritambhar Advait",
       github: "https://github.com/RitambharAdvait",
       linkedin: "https://www.linkedin.com/in/ritambhar-advait-0b3b2137b/",
-      comPort: "COM_PORT_03",
+      role: "Security Tools Developer",
     },
     {
       name: "Piyush Kumar",
       github: "https://github.com/piyushkumar-git",
       linkedin: "https://www.linkedin.com/in/piyush-kumar-4223ba231/",
-      comPort: "COM_PORT_04",
+      role: "Database Engineer",
     },
   ];
 
@@ -130,7 +130,7 @@ export default function AboutPage() {
             <div className="flex items-center justify-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping" />
               <span className="text-[10px] text-green-400 font-mono tracking-widest uppercase font-bold">
-                SYS_INFO // INTEL_TELEMETRY // V2.6
+                OpenThreatLabs Core Information
               </span>
             </div>
 
@@ -171,7 +171,7 @@ export default function AboutPage() {
                   <Target size={20} />
                 </div>
                 <div>
-                  <span className="text-[9px] text-gray-500 font-mono uppercase tracking-widest block">CORE_PILLARS</span>
+                  <span className="text-[9px] text-gray-500 font-mono uppercase tracking-widest block">Core Principles</span>
                   <h2 className="text-xl font-black font-mono uppercase tracking-wider text-white group-hover:text-green-300 transition-colors">
                     Our Mission
                   </h2>
@@ -203,7 +203,7 @@ export default function AboutPage() {
                   <Cpu size={20} />
                 </div>
                 <div>
-                  <span className="text-[9px] text-gray-500 font-mono uppercase tracking-widest block">STRATEGY_DECK</span>
+                  <span className="text-[9px] text-gray-500 font-mono uppercase tracking-widest block">Development Approach</span>
                   <h2 className="text-xl font-black font-mono uppercase tracking-wider text-white group-hover:text-green-300 transition-colors">
                     Our Approach
                   </h2>
@@ -228,7 +228,7 @@ export default function AboutPage() {
           >
             <div className="space-y-2">
               <span className="text-[10px] text-green-400 font-mono tracking-widest uppercase block font-bold">
-                // TEAM_CREDENTIALS_DUMP
+                Our Creators
               </span>
               <h2 className="text-2xl md:text-3xl font-black font-mono uppercase tracking-wider text-white">
                 OpenThreatLabs Core Team
@@ -271,7 +271,7 @@ export default function AboutPage() {
 
                   {/* Dossier Code Accents */}
                   <div className="absolute top-3.5 right-3.5 font-mono text-[9px] text-gray-600 group-hover:text-green-400 transition-colors">
-                    {member.comPort.split("_")[2]}
+                    OTL
                   </div>
                   
                   {/* AVATAR FRAME */}
@@ -293,8 +293,8 @@ export default function AboutPage() {
                     <h3 className="text-white font-mono font-bold text-sm tracking-wider uppercase group-hover:text-green-400 transition-colors">
                       {member.name}
                     </h3>
-                    <span className="text-[8px] font-mono text-gray-550 group-hover:text-green-500/50 transition-colors block mt-0.5 text-gray-500">
-                      {member.comPort}
+                    <span className="text-[9px] font-mono text-gray-500 group-hover:text-green-500/50 transition-colors block mt-0.5">
+                      {member.role}
                     </span>
                   </div>
 

@@ -781,7 +781,7 @@ export default function URLChecker() {
                           ) : (
                             <div className="p-6 text-center bg-black/20 border border-white/5 rounded-xl font-mono text-xs text-green-400 flex flex-col items-center justify-center gap-1.5">
                               <CheckCircle2 size={20} />
-                              <span>✓ Diagnostic Telemetry: Zero malicious indicators detected.</span>
+                              <span>✓ Scan complete: No malicious indicators detected.</span>
                             </div>
                           )}
                         </div>
@@ -790,12 +790,12 @@ export default function URLChecker() {
                       {activeTab === "metadata" && (
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 font-mono text-xs text-gray-400">
                           <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                            <span className="text-gray-500 uppercase tracking-wider block mb-1">AUDIT_HOSTNAME</span>
+                            <span className="text-gray-500 uppercase tracking-wider block mb-1">Audit Hostname</span>
                             <p className="text-xs font-bold text-green-400 break-all">{analysis.domain}</p>
                           </div>
 
                           <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                            <span className="text-gray-500 uppercase tracking-wider block mb-1">URL_PROTOCOL</span>
+                            <span className="text-gray-500 uppercase tracking-wider block mb-1">Protocol</span>
                             <p className="text-xs font-bold text-white flex items-center gap-1.5">
                               {analysis.protocol === "https:" ? (
                                 <>
@@ -812,27 +812,27 @@ export default function URLChecker() {
                           </div>
 
                           <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                            <span className="text-gray-500 uppercase tracking-wider block mb-1">DETECTION_ANOMALIES</span>
+                            <span className="text-gray-500 uppercase tracking-wider block mb-1">Anomalies Detected</span>
                             <p className="text-xs font-bold text-blue-400">{analysis.findings.length} Flags</p>
                           </div>
 
                           <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                            <span className="text-gray-500 uppercase tracking-wider block mb-1">SSL_SIGNATURE</span>
+                            <span className="text-gray-500 uppercase tracking-wider block mb-1">SSL Certificate</span>
                             <p className="text-xs font-bold text-white">
                               {analysis.protocol === "https:" ? "SHA-256 Validated Key" : "No SSL Key Found"}
                             </p>
                           </div>
 
                           <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                            <span className="text-gray-500 uppercase tracking-wider block mb-1">IMPERSONATION_INDEX</span>
+                            <span className="text-gray-500 uppercase tracking-wider block mb-1">Brand Impersonation</span>
                             <p className="text-xs font-bold text-white">
                               {analysis.verdict === "SAFE" ? "0% Offset" : "High Typo Similarity"}
                             </p>
                           </div>
 
                           <div className="bg-black/35 rounded-xl p-4 border border-white/5">
-                            <span className="text-gray-500 uppercase tracking-wider block mb-1">DNS_SEC_STATUS</span>
-                            <p className="text-xs font-bold text-green-400">DNSSEC_VERIFIED</p>
+                            <span className="text-gray-500 uppercase tracking-wider block mb-1">DNSSEC Status</span>
+                            <p className="text-xs font-bold text-green-400">Verified</p>
                           </div>
                         </div>
                       )}
@@ -840,7 +840,7 @@ export default function URLChecker() {
                       {activeTab === "sandbox" && (
                         <div className="bg-black/45 border border-white/5 rounded-xl p-4 font-mono text-xs text-green-300 leading-relaxed shadow-inner">
                           <div className="flex items-center justify-between border-b border-white/5 pb-2 mb-3 text-gray-500">
-                            <span>SANDBOX_DOM_INSPECTION // {analysis.domain}</span>
+                            <span>Sandbox DOM Inspection // {analysis.domain}</span>
                             <span>HTTP/1.1 200 OK</span>
                           </div>
                           
@@ -899,9 +899,9 @@ export default function URLChecker() {
                 >
                   <Activity size={32} className="opacity-25 animate-pulse" />
                   <div className="space-y-1.5">
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// MODULE_IDLE</p>
+                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// Standby</p>
                     <p className="text-xs max-w-sm leading-relaxed">
-                      Awaiting suspected hyperlink payload input in the control console to execute sandboxed auditing.
+                      Awaiting suspected link to execute security scan.
                     </p>
                   </div>
                 </motion.div>

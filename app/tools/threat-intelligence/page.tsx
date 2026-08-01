@@ -499,15 +499,15 @@ export default function ThreatIntelligencePage() {
                           {result.stats.malicious >= 10
                             ? `WARNING: High threat match. Global scanners detected active security vendor blocks matching malicious distributions.`
                             : result.stats.malicious >= 1
-                            ? `ATTENTION: Suspicious indicators matched. Telemetry flagged anomaly patterns related to proxies, routing layers, or reputation offsets.`
+                            ? `ATTENTION: Suspicious indicators flagged related to proxies or reputation anomalies.`
                             : `CLEAN: Zero vendor registries have flagged this asset code block as malicious or suspicious.`}
                         </p>
                       </div>
 
                       <div className="mt-6 flex justify-between items-center text-xs text-gray-500 font-mono border-t border-white/5 pt-3">
-                        <span>DATABASE_REGISTRY</span>
+                        <span>Database Status</span>
                         <span className={`font-bold ${threatColor?.text}`}>
-                          {result.stats.malicious >= 10 ? "CRITICAL_THREAT_BLOCK" : result.stats.malicious >= 1 ? "SUSPICIOUS_ASSET" : "SAFE_ASSET"}
+                          {result.stats.malicious >= 10 ? "Critical Threat" : result.stats.malicious >= 1 ? "Suspicious" : "Clean"}
                         </span>
                       </div>
                     </div>
@@ -755,9 +755,9 @@ export default function ThreatIntelligencePage() {
                 >
                   <Activity size={32} className="opacity-25" />
                   <div className="space-y-1.5">
-                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// MODULE_IDLE</p>
+                    <p className="text-xs uppercase tracking-widest text-gray-400 font-bold">// Standby</p>
                     <p className="text-xs max-w-sm leading-relaxed">
-                      Awaiting threat signature inputs in the ingestion terminal to contact VirusTotal threat intelligence registry hubs.
+                      Awaiting IP address, domain, or file hash inputs to query threat intelligence databases.
                     </p>
                   </div>
                 </motion.div>

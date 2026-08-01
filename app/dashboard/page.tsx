@@ -71,15 +71,14 @@ export default function DashboardPage() {
     setScanLogs([]);
 
     const logMessages = [
-      "Initializing CyberSatark Security Audit...",
-      "Resolving database handshake variables...",
-      "Establishing link with Firebase database protocols...",
-      "Inspecting operator session token integrity...",
-      "Auditing average quiz response telemetry...",
-      "Analyzing password entropy diagnostics...",
-      "Auditing URL scanning sandbox environment...",
-      "Compiling recent activity records...",
-      "Verification complete. Security index calculation generated successfully."
+      "Initializing Security Diagnostic Audit...",
+      "Checking database connectivity...",
+      "Verifying user authentication token status...",
+      "Auditing quiz completion records...",
+      "Retrieving password analyzer diagnostic metrics...",
+      "Validating active tool telemetry states...",
+      "Compiling module progress statistics...",
+      "Audit complete. Security rating generated successfully."
     ];
 
     for (let i = 0; i < logMessages.length; i++) {
@@ -99,7 +98,7 @@ export default function DashboardPage() {
           <div className="flex flex-col items-center gap-4">
             <Loader2 className="animate-spin text-green-400 h-10 w-10" />
             <p className="text-green-300 font-mono tracking-widest text-xs animate-pulse">
-              LOADING_SECURE_HUD_TELEMETRY...
+              Loading dashboard...
             </p>
           </div>
         </div>
@@ -129,7 +128,7 @@ export default function DashboardPage() {
             <div>
               <p className="text-blue-400 font-mono text-base uppercase tracking-widest flex items-center gap-2 font-bold">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
-                SEC_CONSOLE_ONLINE
+                Session Active
               </p>
               
               <div className="relative inline-block mt-4">
@@ -145,7 +144,7 @@ export default function DashboardPage() {
                     )}
                   </div>
                   <span className="text-4xl md:text-5xl font-black tracking-tight text-white font-mono uppercase group-hover:text-green-400 transition-colors flex items-center gap-1.5">
-                    HUD
+                    Dashboard
                     <span className="text-xs opacity-50 font-normal tracking-widest text-gray-500 font-mono self-end pb-2">▼</span>
                   </span>
                 </button>
@@ -156,7 +155,7 @@ export default function DashboardPage() {
                       onClick={() => setShowMenu(false)}
                       className="w-full text-left px-3 py-2.5 rounded-lg transition-colors cursor-pointer bg-green-500/10 text-green-400 border border-green-500/20 font-bold"
                     >
-                      Security Console (HUD)
+                      Security Dashboard
                     </button>
                     <Link
                       href="/profile"
@@ -168,19 +167,19 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <p className="text-gray-200 mt-4 text-base leading-relaxed max-w-md font-mono">
-                System operator dashboard interface. Monitor real-time quiz evaluations, diagnostic checks, sandbox logs, and security indices.
+              <p className="text-gray-200 mt-4 text-sm leading-relaxed max-w-md font-sans">
+                Welcome to your security center. Track quiz progress, analyze system security metrics, and access awareness tools.
               </p>
             </div>
             
-            <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/5 pt-6 font-mono text-sm text-gray-400">
+            <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/5 pt-6 font-mono text-xs text-gray-400">
               <div>
-                <span>REGISTRATION_STAMP</span>
+                <span>Member Since</span>
                 <p className="text-white mt-0.5 truncate font-bold">{new Date(profile.createdAt).toLocaleDateString()}</p>
               </div>
               <div>
-                <span>SYSTEM_ROLE</span>
-                <p className="text-green-400 mt-0.5 font-bold uppercase">{profile.role}</p>
+                <span>Account Role</span>
+                <p className="text-green-400 mt-0.5 font-bold uppercase">{profile.role === "admin" ? "Admin" : "Standard User"}</p>
               </div>
             </div>
           </div>
@@ -188,7 +187,7 @@ export default function DashboardPage() {
           {/* ACTIVE RADIAL SECURITY SCORE GAUGE USING HEROUI */}
           <div className="glass-card p-6 flex flex-col items-center justify-center text-center relative overflow-hidden group hover:border-green-500/20">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
-            <p className="text-gray-400 font-mono text-sm uppercase tracking-wider mb-4 font-bold">SECURITY_INDEX</p>
+            <p className="text-gray-400 font-mono text-sm uppercase tracking-wider mb-4 font-bold">Security Score</p>
             
             <div className="relative w-36 h-36 flex items-center justify-center">
               <ProgressCircle value={score} aria-label="Security Index">
@@ -215,33 +214,33 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <span className="text-gray-300 font-mono text-sm uppercase tracking-wider flex items-center gap-1.5 font-bold">
                 <Cpu size={14} className="text-blue-400" />
-                SYSTEM_TELEMETRY
+                Security Protocols
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping" />
             </div>
 
-            <div className="space-y-3.5 font-mono text-sm text-gray-300 py-4">
+            <div className="space-y-3.5 font-mono text-xs text-gray-300 py-4">
               <div className="flex justify-between border-b border-white/[0.02] pb-1.5">
-                <span className="text-gray-400">HANDSHAKE_ENCRYPTION</span>
+                <span className="text-gray-400">Data Encryption</span>
                 <span className="text-white font-semibold">AES-256-GCM</span>
               </div>
               <div className="flex justify-between border-b border-white/[0.02] pb-1.5">
-                <span className="text-gray-400">HANDSHAKE_STATUS</span>
-                <span className="text-green-400 font-semibold">ENFORCED</span>
+                <span className="text-gray-400">Connection Security</span>
+                <span className="text-green-400 font-semibold">Enforced</span>
               </div>
               <div className="flex justify-between border-b border-white/[0.02] pb-1.5">
-                <span className="text-gray-400">SSL_TOKEN_HANDSHAKE</span>
-                <span className="text-white font-semibold truncate max-w-[110px]">VAL_VALIDATED</span>
+                <span className="text-gray-400">SSL Certificate</span>
+                <span className="text-white font-semibold truncate max-w-[110px]">Valid</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">SYS_PORTAL_STABILITY</span>
-                <span className="text-blue-400 font-semibold">99.98%</span>
+                <span className="text-gray-400">Portal Stability</span>
+                <span className="text-blue-400 font-semibold">99.99%</span>
               </div>
             </div>
 
             <div className="bg-black/35 rounded-xl border border-white/5 px-3 py-2.5 flex items-center gap-2">
               <Radio size={14} className="text-green-400 animate-pulse" />
-              <span className="text-xs font-mono text-gray-300 tracking-wider">SECURE FEED PIPES INGESTING</span>
+              <span className="text-xs font-mono text-gray-300 tracking-wider">Active Monitoring Enabled</span>
             </div>
           </div>
 
@@ -255,19 +254,19 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4">
               <span className="text-gray-300 font-mono text-sm uppercase tracking-wider flex items-center gap-2 font-bold">
                 <Terminal size={16} className="text-green-400" />
-                TACTICAL_DIAGNOSTIC_TERMINAL
+                Security Diagnostic Audit
               </span>
               <div className="flex items-center gap-1.5">
                 <span className={`w-2 h-2 rounded-full ${scanState === "scanning" ? "bg-yellow-400 animate-pulse" : scanState === "done" ? "bg-green-400" : "bg-gray-500"}`} />
                 <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-                  {scanState === "scanning" ? "SCANNING..." : scanState === "done" ? "SYSTEM_READY" : "OFFLINE"}
+                  {scanState === "scanning" ? "SCANNING..." : scanState === "done" ? "System Ready" : "Inactive"}
                 </span>
               </div>
             </div>
 
             <div className="space-y-4 flex-1">
-              <p className="text-xs text-gray-400 font-mono leading-relaxed">
-                Execute a diagnostic integrity sweep of your session, security clearance, password hashes, and active modules.
+              <p className="text-xs text-gray-400 font-sans leading-relaxed">
+                Run a diagnostic security check of your active sessions, profile progress, and tool telemetry states.
               </p>
 
               {/* TERMINAL DISPLAY SCREEN */}
@@ -284,12 +283,12 @@ export default function DashboardPage() {
                 {scanState === "scanning" && (
                   <div className="flex items-center gap-2 text-yellow-400 animate-pulse mt-2">
                     <Loader2 size={12} className="animate-spin" />
-                    <span>RUNNING DIAGNOSTIC CORRELATIONS ({scanProgress}%)</span>
+                    <span>RUNNING SECURITY CHECK ({scanProgress}%)</span>
                   </div>
                 )}
                 {scanState === "done" && (
                   <p className="text-green-400 font-bold mt-2">
-                    [+] SYSTEM INTEGRITY SECURED. THREAT INDEX: 0.00%
+                    [+] Security Check Complete. No threats detected.
                   </p>
                 )}
               </div>
@@ -314,7 +313,7 @@ export default function DashboardPage() {
                 ) : (
                   <>
                     <RefreshCw size={12} />
-                    <span>Run Diagnostic Sweep</span>
+                    <span>Run Security Audit</span>
                   </>
                 )}
               </button>
@@ -337,9 +336,9 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4">
               <span className="text-gray-300 font-mono text-sm uppercase tracking-wider flex items-center gap-2 font-bold">
                 <Activity size={16} className="text-blue-400" />
-                SECURITY_TELEMETRY
+                Training Stats
               </span>
-              <span className="text-[10px] font-mono text-gray-500">STATS_LOG</span>
+              <span className="text-[10px] font-mono text-gray-500">Overview</span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 py-2 font-mono text-xs">
@@ -361,7 +360,7 @@ export default function DashboardPage() {
               href="/profile"
               className="mt-4 w-full text-center px-4 py-2.5 rounded-xl border border-white/10 hover:border-green-500/20 hover:bg-white/[0.02] text-xs font-mono font-bold uppercase tracking-wider transition duration-300 block"
             >
-              Access Profile Dossier
+              Access Profile Settings
             </Link>
           </div>
         </section>
@@ -370,7 +369,7 @@ export default function DashboardPage() {
         <section className="space-y-4">
           <h2 className="text-lg font-bold font-mono tracking-widest text-white uppercase flex items-center gap-2">
             <span className="w-1.5 h-3 bg-green-500 inline-block animate-pulse" />
-            OPERATIONAL_TACTICAL_MODULES
+            Security Awareness Modules
           </h2>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -378,7 +377,7 @@ export default function DashboardPage() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <Globe className="text-blue-400" size={20} />
-                  <span className="text-[9px] font-mono text-gray-500">SCANNER_01</span>
+                  <span className="text-[9px] font-mono text-gray-500">Module 1</span>
                 </div>
                 <h3 className="text-sm font-mono font-bold text-white uppercase tracking-wider">URL Threat Scanner</h3>
                 <p className="text-xs text-gray-400 mt-2 font-sans leading-relaxed">
@@ -389,7 +388,7 @@ export default function DashboardPage() {
                 href="/tools/url-checker"
                 className="mt-4 text-xs font-mono font-bold text-green-400 hover:text-green-300 flex items-center gap-1 uppercase"
               >
-                <span>Deploy Module</span>
+                <span>Open Tool</span>
                 <span>→</span>
               </Link>
             </div>
@@ -398,7 +397,7 @@ export default function DashboardPage() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <Mail className="text-cyan-400" size={20} />
-                  <span className="text-[9px] font-mono text-gray-500">SCANNER_02</span>
+                  <span className="text-[9px] font-mono text-gray-500">Module 2</span>
                 </div>
                 <h3 className="text-sm font-mono font-bold text-white uppercase tracking-wider">Phishing Analyzer</h3>
                 <p className="text-xs text-gray-400 mt-2 font-sans leading-relaxed">
@@ -409,7 +408,7 @@ export default function DashboardPage() {
                 href="/tools/phishing-analysis"
                 className="mt-4 text-xs font-mono font-bold text-green-400 hover:text-green-300 flex items-center gap-1 uppercase"
               >
-                <span>Deploy Module</span>
+                <span>Open Tool</span>
                 <span>→</span>
               </Link>
             </div>
@@ -418,7 +417,7 @@ export default function DashboardPage() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <Lock className="text-green-400" size={20} />
-                  <span className="text-[9px] font-mono text-gray-500">ANALYZER_01</span>
+                  <span className="text-[9px] font-mono text-gray-500">Module 3</span>
                 </div>
                 <h3 className="text-sm font-mono font-bold text-white uppercase tracking-wider">Password Entropy</h3>
                 <p className="text-xs text-gray-400 mt-2 font-sans leading-relaxed">
@@ -429,7 +428,7 @@ export default function DashboardPage() {
                 href="/tools/password-analyzer"
                 className="mt-4 text-xs font-mono font-bold text-green-400 hover:text-green-300 flex items-center gap-1 uppercase"
               >
-                <span>Deploy Module</span>
+                <span>Open Tool</span>
                 <span>→</span>
               </Link>
             </div>
@@ -438,7 +437,7 @@ export default function DashboardPage() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <GraduationCap className="text-yellow-400" size={20} />
-                  <span className="text-[9px] font-mono text-gray-500">EVAL_01</span>
+                  <span className="text-[9px] font-mono text-gray-500">Module 4</span>
                 </div>
                 <h3 className="text-sm font-mono font-bold text-white uppercase tracking-wider">Tactical Quizzes</h3>
                 <p className="text-xs text-gray-400 mt-2 font-sans leading-relaxed">
@@ -449,7 +448,7 @@ export default function DashboardPage() {
                 href="/quiz"
                 className="mt-4 text-xs font-mono font-bold text-green-400 hover:text-green-300 flex items-center gap-1 uppercase"
               >
-                <span>Deploy Module</span>
+                <span>Open Quiz</span>
                 <span>→</span>
               </Link>
             </div>

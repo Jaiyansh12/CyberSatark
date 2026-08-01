@@ -194,7 +194,7 @@ export default function ProfilePage() {
           <div className="flex flex-col items-center gap-4">
             <Loader2 className="animate-spin text-green-400 h-10 w-10" />
             <p className="text-green-300 font-mono tracking-widest text-xs animate-pulse">
-              LOADING_SECURE_PROFILE_TELEMETRY...
+              Loading profile...
             </p>
           </div>
         </div>
@@ -218,11 +218,11 @@ export default function ProfilePage() {
             className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 hover:text-green-400 transition-colors border border-white/5 bg-white/[0.01] hover:border-green-500/20 px-4 py-2 rounded-xl"
           >
             <ArrowLeft size={12} />
-            <span>RETURN_TO_HUD_CONSOLE</span>
+            <span>Return to Dashboard</span>
           </Link>
 
           <span className="text-[10px] text-green-500 font-mono tracking-widest uppercase hidden sm:inline">
-            // PROFILE_VERIFICATION_COMPLETE
+            // Profile Settings Loaded
           </span>
         </div>
 
@@ -269,17 +269,17 @@ export default function ProfilePage() {
               <div>
                 <h1 className="text-3xl font-black text-white font-mono uppercase tracking-wide flex items-center gap-2">
                   <UserIcon className="text-green-400" size={26} />
-                  Profile Dossier
+                  User Profile
                 </h1>
                 <span className="text-[9px] text-gray-500 font-mono tracking-widest block mt-1 uppercase">
-                  VERIFICATION_ENVELOPE // PROFILE_DUMP // ACCESS_AUTHORIZED
+                  Account Details & Settings
                 </span>
               </div>
             </div>
             
             <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-3.5 py-1.5 rounded-xl text-green-400 font-mono text-xs uppercase tracking-wider font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping" />
-              VERIFIED_OPERATOR
+              Verified Account
             </div>
           </div>
 
@@ -289,7 +289,7 @@ export default function ProfilePage() {
               {/* Username Row */}
               <div className="flex flex-col border-b border-white/5 pb-2.5 space-y-1.5">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400 uppercase text-xs">Operator Username</span>
+                  <span className="text-gray-400 uppercase text-xs">Username</span>
                   {editingField !== "username" && (
                     <button
                       onClick={() => {
@@ -299,7 +299,7 @@ export default function ProfilePage() {
                       }}
                       className="text-[10px] font-mono text-green-400 hover:text-green-300 hover:underline cursor-pointer bg-transparent border-none p-0 uppercase"
                     >
-                      [Edit]
+                      Edit
                     </button>
                   )}
                 </div>
@@ -316,14 +316,14 @@ export default function ProfilePage() {
                       disabled={actionLoading}
                       className="text-xs font-mono text-green-400 hover:text-green-300 cursor-pointer bg-transparent border-none font-bold"
                     >
-                      {actionLoading ? "..." : "[SAVE]"}
+                      {actionLoading ? "..." : "Save"}
                     </button>
                     <button
                       onClick={() => setEditingField(null)}
                       disabled={actionLoading}
                       className="text-xs font-mono text-gray-500 hover:text-gray-400 cursor-pointer bg-transparent border-none"
                     >
-                      [X]
+                      Cancel
                     </button>
                   </div>
                 ) : (
@@ -334,7 +334,7 @@ export default function ProfilePage() {
               {/* Email Row */}
               <div className="flex flex-col border-b border-white/5 pb-2.5 space-y-1.5">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400 uppercase text-xs">Secure Email</span>
+                  <span className="text-gray-400 uppercase text-xs">Email Address</span>
                   {editingField !== "email" && (
                     <button
                       onClick={() => {
@@ -344,7 +344,7 @@ export default function ProfilePage() {
                       }}
                       className="text-[10px] font-mono text-green-400 hover:text-green-300 hover:underline cursor-pointer bg-transparent border-none p-0 uppercase"
                     >
-                      [Edit]
+                      Edit
                     </button>
                   )}
                 </div>
@@ -361,14 +361,14 @@ export default function ProfilePage() {
                       disabled={actionLoading}
                       className="text-xs font-mono text-green-400 hover:text-green-300 cursor-pointer bg-transparent border-none font-bold"
                     >
-                      {actionLoading ? "..." : "[SAVE]"}
+                      {actionLoading ? "..." : "Save"}
                     </button>
                     <button
                       onClick={() => setEditingField(null)}
                       disabled={actionLoading}
                       className="text-xs font-mono text-gray-500 hover:text-gray-400 cursor-pointer bg-transparent border-none"
                     >
-                      [X]
+                      Cancel
                     </button>
                   </div>
                 ) : (
@@ -379,7 +379,7 @@ export default function ProfilePage() {
               {/* Password Row */}
               <div className="flex flex-col border-b border-white/5 pb-2.5 space-y-1.5">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400 uppercase text-xs">Security Credentials</span>
+                  <span className="text-gray-400 uppercase text-xs">Password</span>
                   {editingField !== "password" && (
                     <button
                       onClick={() => {
@@ -390,7 +390,7 @@ export default function ProfilePage() {
                       }}
                       className="text-[10px] font-mono text-green-400 hover:text-green-300 hover:underline cursor-pointer bg-transparent border-none p-0 uppercase"
                     >
-                      [Rotate]
+                      Change
                     </button>
                   )}
                 </div>
@@ -418,27 +418,26 @@ export default function ProfilePage() {
                         disabled={actionLoading}
                         className="text-green-400 hover:text-green-300 cursor-pointer bg-transparent border-none font-bold uppercase"
                       >
-                        {actionLoading ? "Rotating..." : "[CONFIRM]"}
+                        {actionLoading ? "Saving..." : "Confirm"}
                       </button>
                       <button
                         onClick={() => setEditingField(null)}
                         disabled={actionLoading}
                         className="text-gray-500 hover:text-gray-400 cursor-pointer bg-transparent border-none uppercase"
                       >
-                        [Cancel]
+                        Cancel
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <span className="text-gray-500 italic">•••••••• [ENCRYPTED]</span>
+                  <span className="text-gray-500 italic">••••••••</span>
                 )}
               </div>
 
-              {/* Access Clearance */}
               <div className="flex justify-between border-b border-white/5 pb-2.5">
-                <span className="text-gray-400 uppercase text-xs">Access Clearance</span>
+                <span className="text-gray-400 uppercase text-xs">Account Role</span>
                 <span className="text-green-400 font-bold uppercase">
-                  {profile.role === "admin" ? "LEVEL_5 (ADMIN)" : "LEVEL_1 (OPERATOR)"}
+                  {profile.role === "admin" ? "Admin" : "Standard User"}
                 </span>
               </div>
             </div>
@@ -446,13 +445,13 @@ export default function ProfilePage() {
             {/* RIGHT TELEMETRY INDICES */}
             <div className="space-y-4">
               <div className="flex justify-between border-b border-white/5 pb-2.5">
-                <span className="text-gray-400 uppercase text-xs">Reference UID</span>
+                <span className="text-gray-400 uppercase text-xs">User ID</span>
                 <span className="text-gray-300 font-mono text-xs truncate max-w-[200px]" title={profile.uid}>
                   {profile.uid}
                 </span>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-2.5">
-                <span className="text-gray-400 uppercase text-xs">Registration Stamp</span>
+                <span className="text-gray-400 uppercase text-xs">Account Created</span>
                 <span className="text-white font-semibold">
                   {new Date(profile.createdAt).toLocaleString()}
                 </span>
@@ -465,14 +464,14 @@ export default function ProfilePage() {
                 </span>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-2.5">
-                <span className="text-gray-400 uppercase text-xs">Highest Score Index</span>
+                <span className="text-gray-400 uppercase text-xs">Highest Score</span>
                 <span className="text-cyan-400 font-bold flex items-center gap-1">
                   <Award size={12} className="text-cyan-400" />
                   {profile.stats.highestScore} / 10
                 </span>
               </div>
               <div className="flex justify-between border-b border-white/5 pb-2.5">
-                <span className="text-gray-400 uppercase text-xs">Average Security Index</span>
+                <span className="text-gray-400 uppercase text-xs">Average Score</span>
                 <span className="text-green-400 font-bold flex items-center gap-1">
                   <Shield size={12} className="text-green-400" />
                   {profile.stats.averageScore}%

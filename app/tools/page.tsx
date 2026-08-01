@@ -29,7 +29,7 @@ const toolsData = [
     icon: Link2,
     status: "Active",
     category: "DETECTION",
-    telemetryId: "SCANNER_01",
+    telemetryId: "URL-01",
     color: "blue",
     glowColor: "group-hover:border-blue-500/30 group-hover:shadow-blue-500/10",
     iconBg: "bg-blue-500/10 border-blue-500/20 text-blue-400"
@@ -42,7 +42,7 @@ const toolsData = [
     icon: MailWarning,
     status: "Active",
     category: "ANALYSIS",
-    telemetryId: "SCANNER_02",
+    telemetryId: "EMAIL-01",
     color: "cyan",
     glowColor: "group-hover:border-cyan-500/30 group-hover:shadow-cyan-500/10",
     iconBg: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400"
@@ -55,7 +55,7 @@ const toolsData = [
     icon: BrainCircuit,
     status: "Active",
     category: "DETECTION",
-    telemetryId: "ANALYSIS_01",
+    telemetryId: "PHISH-01",
     color: "red",
     glowColor: "group-hover:border-red-500/30 group-hover:shadow-red-500/10",
     iconBg: "bg-red-500/10 border-red-500/20 text-red-400"
@@ -68,7 +68,7 @@ const toolsData = [
     icon: ShieldCheck,
     status: "Active",
     category: "UTILITIES",
-    telemetryId: "UTILITIES_01",
+    telemetryId: "PASS-01",
     color: "green",
     glowColor: "group-hover:border-green-500/30 group-hover:shadow-green-500/10",
     iconBg: "bg-green-500/10 border-green-500/20 text-green-400"
@@ -81,7 +81,7 @@ const toolsData = [
     icon: BugOff,
     status: "Active",
     category: "ANALYSIS",
-    telemetryId: "INTELLIGENCE_01",
+    telemetryId: "INTEL-01",
     color: "purple",
     glowColor: "group-hover:border-purple-500/30 group-hover:shadow-purple-500/10",
     iconBg: "bg-purple-500/10 border-purple-500/20 text-purple-400"
@@ -116,13 +116,13 @@ export default function ToolsPage() {
             <div>
               <p className="text-green-400 font-mono text-xs uppercase tracking-widest flex items-center gap-2 font-bold">
                 <Activity size={12} className="animate-pulse" />
-                SEC_MODULES_ONLINE
+                Security Modules Online
               </p>
               <h1 className="text-3xl font-black mt-3 font-mono tracking-tight uppercase">
                 Operations Launchpad
               </h1>
-              <p className="text-gray-300 mt-3 text-sm leading-relaxed font-mono">
-                Initiate specialized diagnostic modules. Evaluate suspected assets against sandboxed routing directories and threat intelligence flags.
+              <p className="text-gray-300 mt-3 text-sm leading-relaxed font-sans">
+                Access our suite of security verification tools to inspect URLs, analyze email headers, check password strength, and scan threats.
               </p>
             </div>
           </div>
@@ -130,50 +130,50 @@ export default function ToolsPage() {
           <div className="glass-card p-5 flex flex-col justify-between font-mono text-xs text-gray-400">
             <div className="flex items-center gap-1.5 border-b border-white/5 pb-2 mb-2 font-bold text-gray-350">
               <Cpu size={14} className="text-blue-400" />
-              INTELLIGENCE_STATUS
+              Security Feeds
             </div>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span>THREAT_FEEDS</span>
+                <span>Threat Feeds</span>
                 <span className="text-green-400 font-bold">STABLE</span>
               </div>
               <div className="flex justify-between">
-                <span>INGESTION_RATE</span>
+                <span>Ingestion Rate</span>
                 <span className="text-white font-bold">14.8K/S</span>
               </div>
               <div className="flex justify-between">
-                <span>DATABASE_SYNC</span>
+                <span>Database Sync</span>
                 <span className="text-blue-400 font-bold">SYNCED</span>
               </div>
             </div>
             <div className="mt-4 flex items-center gap-1.5 text-[10px] text-gray-500 bg-black/25 px-2.5 py-1 rounded">
               <Radio size={10} className="text-green-400 animate-pulse" />
-              <span>CORE_STABILITY: 99.99%</span>
+              <span>Uptime: 99.99%</span>
             </div>
           </div>
 
           <div className="glass-card p-5 flex flex-col justify-between font-mono text-xs text-gray-400">
             <div className="flex items-center gap-1.5 border-b border-white/5 pb-2 mb-2 font-bold text-gray-350">
               <ShieldAlert size={14} className="text-yellow-400" />
-              SANDBOX_TELEMETRY
+              System Status
             </div>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span>FIREWALL_MODE</span>
+                <span>Firewall Mode</span>
                 <span className="text-green-400 font-bold">ENFORCED</span>
               </div>
               <div className="flex justify-between">
-                <span>DECRYPT_PIPES</span>
+                <span>System Pipelines</span>
                 <span className="text-white font-bold">ACTIVE</span>
               </div>
               <div className="flex justify-between">
-                <span>SEC_ISOLATION</span>
+                <span>Security Isolation</span>
                 <span className="text-yellow-400 font-bold">STANDBY</span>
               </div>
             </div>
             <div className="mt-4 flex items-center gap-1.5 text-[10px] text-gray-500 bg-black/25 px-2.5 py-1 rounded">
               <Terminal size={10} className="text-blue-400" />
-              <span>DEVICES: SECURED</span>
+              <span>Status: Secured</span>
             </div>
           </div>
 
@@ -284,11 +284,11 @@ export default function ToolsPage() {
 
                       {!isComingSoon ? (
                         <div className="flex items-center gap-1.5 text-green-400 text-sm font-bold group-hover:translate-x-1.5 transition font-mono">
-                          <span>DEPLOY_MODULE</span>
+                          <span>Open Tool</span>
                           <ArrowRight size={14} />
                         </div>
                       ) : (
-                        <span className="text-xs text-gray-500 font-mono">STANDBY</span>
+                        <span className="text-xs text-gray-500 font-mono">Coming Soon</span>
                       )}
                     </div>
                   </Link>
@@ -305,7 +305,7 @@ export default function ToolsPage() {
               className="col-span-full py-16 flex flex-col items-center justify-center text-center text-gray-500 font-mono"
             >
               <ShieldAlert size={36} className="text-gray-600 mb-3" />
-              <p className="text-sm uppercase tracking-wider">// NO_MODULES_MATCH_CRITERIA</p>
+              <p className="text-sm uppercase tracking-wider">// No tools match criteria</p>
             </motion.div>
           )}
 
@@ -316,10 +316,10 @@ export default function ToolsPage() {
           <div className="rounded-3xl border border-white/12 bg-white/[0.03] backdrop-blur-[40px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.65)] hover:border-green-500/20 transition duration-300 relative overflow-hidden group">
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
             <h2 className="text-2xl font-black text-green-400 mb-4 font-mono uppercase">
-              Expandable Operations Pipeline
+              Future Roadmap
             </h2>
-            <p className="text-gray-300 leading-relaxed text-sm font-mono">
-              CyberSatark is continuously expanding its telemetry framework. Future modules will ingest real-time threat intelligence dossiers, simulate malware execution sandboxes, analyze domain registrar history, and provide interactive phishing training challenges.
+            <p className="text-gray-300 leading-relaxed text-sm font-sans">
+              CyberSatark is continuously expanding its capabilities. Future modules will integrate deep domain history logs, email sender authentication audits, and advanced interactive training simulations.
             </p>
           </div>
         </section>
