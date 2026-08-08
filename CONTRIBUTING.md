@@ -1,5 +1,9 @@
 # Contributing to CyberSatark 🛡️
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=flat-square)](CODE_OF_CONDUCT.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+
 First off, thank you for considering contributing to **CyberSatark**! Projects like this thrive because of open-source contributors like you.
 
 CyberSatark is a modern, interactive cybersecurity awareness and diagnostics platform built by **OpenThreatLabs**. Whether you are fixing a bug, adding new threat intelligence features, improving accessibility, or refining the UI/UX, all contributions are welcome!

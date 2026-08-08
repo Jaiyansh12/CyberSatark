@@ -3,14 +3,21 @@
 <div align="center">
 
 [![Vercel Deployment](https://img.shields.io/badge/Deployment-Live-brightgreen?style=for-the-badge&logo=vercel)](https://cybersatark.vercel.app/)
-[![Stars](https://img.shields.io/github/stars/OpenThreatLabs/CyberSatark?style=for-the-badge&color=green)](https://github.com/OpenThreatLabs/CyberSatark/stargazers)
-[![Forks](https://img.shields.io/github/forks/OpenThreatLabs/CyberSatark?style=for-the-badge&color=green)](https://github.com/OpenThreatLabs/CyberSatark/network/members)
+[![Stars](https://img.shields.io/github/stars/OpenThreatLabs/CyberSatark?style=for-the-badge&color=22c55e)](https://github.com/OpenThreatLabs/CyberSatark/stargazers)
+[![Forks](https://img.shields.io/github/forks/OpenThreatLabs/CyberSatark?style=for-the-badge&color=22c55e)](https://github.com/OpenThreatLabs/CyberSatark/network/members)
 [![Issues](https://img.shields.io/github/issues/OpenThreatLabs/CyberSatark?style=for-the-badge&color=red)](https://github.com/OpenThreatLabs/CyberSatark/issues)
-[![License](https://img.shields.io/github/license/OpenThreatLabs/CyberSatark?style=for-the-badge&color=blue)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge&logo=github)](CONTRIBUTING.md)
+
+<br/>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=flat-square)](CODE_OF_CONDUCT.md)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-red.svg?style=flat-square)](SECURITY.md)
+[![Open Source](https://img.shields.io/badge/Open%20Source-❤️-orange.svg?style=flat-square)](#-open-source--community-health)
 
 **CyberSatark** is a state-of-the-art cybersecurity awareness platform developed under the **WiCYS Club** as a hackathon initiative. It bridges the gap between complex technical threat concepts and everyday internet users through highly interactive, game-based learning experiences.
 
-[**🌐 Explore Live Site**](https://cybersatark.vercel.app/) • [**📽️ View Walkthrough**](#-key-features) • [**⚙️ Local Setup**](#-installation-and-setup)
+[**🌐 Explore Live Site**](https://cybersatark.vercel.app/) • [**📽️ View Features**](#-key-features) • [**⚙️ Local Setup**](#-installation-and-setup) • [**🤝 Contributing**](CONTRIBUTING.md)
 
 </div>
 
