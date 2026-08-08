@@ -147,6 +147,18 @@ Thanks to the following creators for building CyberSatark:
 
 ---
 
+## 🤝 Open Source & Community Health
+
+We welcome contributions of all kinds! Please refer to the following documents for guidelines:
+
+- **[Contributing Guidelines](CONTRIBUTING.md)** – Setup instructions, PR workflows, and architecture map.
+- **[Code of Conduct](CODE_OF_CONDUCT.md)** – Standards for fostering an inclusive community.
+- **[Security Policy](SECURITY.md)** – Disclosure policy for reporting vulnerabilities.
+- **[License](LICENSE)** – Open-source MIT License details.
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
